@@ -1,0 +1,101 @@
+﻿@using Web.Models;
+@model List<Movie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hero-section">
+    <!-- HERO SLIDE -->
+    <div class="hero-slide">
+        <div class="owl-carousel carousel-nav-center owl-loaded owl-drag" id="hero-carousel">
+            <div class="owl-stage-outer">
+                <div class="owl-stage" style="transform: translate3d(-5220px, 0px, 0px); transition: all 0.25s ease 0s; width: 9135px;">
+                    @Html.Action("BannerActive", "Home")
+                    @Html.Action("Banner", "Home")
+
+                </div>
+            </div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="bx bx-chevron-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="bx bx-chevron-right"></i></button></div><div class="owl-dots disabled"></div>
+        </div>
+    </div>
+</div>
+<div class="movies-slide carousel-nav-center owl-carousel owl-loaded owl-drag">
+    <div class="owl-stage-outer">
+        <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2170px;">
+            @{
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    i++;
+                    <div class="owl-item" style="width: 295px; margin-right: 15px;">
+                        <a href="@Url.Action("DetailMovie","Home",new { @MoiveID = item.MovieID})" class="movie-item">
+                            <img src="@Url.Content("~/Images/Index/"+item.Image)" alt="">
+                            <div class="movie-item-content">
+                                <div class="movie-item-title">
+                                    @item.Name
+                                </div>
+                                <div class="movie-infos">
+                                    <div class="movie-info">
+                                        <i class="bx bxs-star"></i>
+                                        <span>9.5</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <i class="bx bxs-time"></i>
+                                        <span>120 mins</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>HD</span>
+                                    </div>
+                                    <div class="movie-info">
+                                        <span>16+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="bx bx-chevron-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="bx bx-chevron-right"></i></button></div><div class="owl-dots disabled"></div>
+</div>
+@Html.Action("Category3", "Home")
+<div class="section">
+    <div class="hero-slide-item">
+        <img src="~/Images/Index/transformer-banner.jpg" alt="">
+        <div class="overlay"></div>
+        <div class="hero-slide-item-content">
+            <div class="item-content-wraper">
+                <div class="item-content-title">
+                    Transformer
+                </div>
+                <div class="movie-infos">
+                    <div class="movie-info">
+                        <i class="bx bxs-star"></i>
+                        <span>9.5</span>
+                    </div>
+                    <div class="movie-info">
+                        <i class="bx bxs-time"></i>
+                        <span>120 mins</span>
+                    </div>
+                    <div class="movie-info">
+                        <span>HD</span>
+                    </div>
+                    <div class="movie-info">
+                        <span>16+</span>
+                    </div>
+                </div>
+                <div class="item-content-description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
+                </div>
+                <div class="item-action">
+                    <a href="#" class="btn btn-hover">
+                        <i class="bx bxs-right-arrow"></i>
+                        <span>Watch now</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("Category2", "Home")
+@Html.Action("Category1", "Home")

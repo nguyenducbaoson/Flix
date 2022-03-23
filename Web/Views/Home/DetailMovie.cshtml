@@ -1,0 +1,220 @@
+﻿
+@model Web.Models.Movie
+
+@{
+    ViewBag.Title = "DetailMovie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetailMovie</h2>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoreImages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoreImages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Directors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Directors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrailerLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrailerLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Viewed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Viewed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MetaKeywords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MetaKeywords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MetaDescriptions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MetaDescriptions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Banner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Isbanner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Isbanner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
