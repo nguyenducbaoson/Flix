@@ -1,220 +1,90 @@
-﻿
-@model Web.Models.Movie
+﻿@model Web.Models.Movie
 
 @{
     ViewBag.Title = "DetailMovie";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/css/Detail/css.css" rel="stylesheet" />
+<link href="~/css/Detail/classy-nav.css" rel="stylesheet" />
+<link href="~/css/Detail/font-awesome.min.css" rel="stylesheet" />
+<div class="container clear_navar" style="padding-top: 60px;">
+    <div class="row">
 
-<h2>DetailMovie</h2>
+        <div class="col-xl-8" style="height: auto; padding-top: 40px;">
+            <div class=" detail">
+                <div style="   background-image :src("/Images/Index/wanda-banner.jpg")">
+                    <div class="row" style="margin: 10px">
 
-<div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                        <div style="width :50%" class="col-12 col-sm-4 col-md-4 ">
+                            <div class="section-header">
+                                Wandavision
+                            </div>
+                            <img width="40%" src="~/Images/Index/wanda.png">
+                        </div>
+                        <div style="width :50%" class="col-12 col-sm-8 col-md-8">
+                            <div class="chitiet" style="padding-top: 20px;width:100%;margin:auto">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td width="100px" style="color: white; font-weight: bold;">Time</td>
+                                            <td>120 Minutes</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color:white; font-weight: bold;">Country</td>
+                                            <td><a>America</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: white; font-weight: bold;">Category</td>
+                                            <td>Fantasy</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: white; font-weight: bold;">Year</td>
+                                            <td data-v-7c633b6c=""><a>2021</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: white; font-weight: bold;">Views</td>
+                                            <td data-v-7c633b6c=""><a>13</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: white; font-weight: bold;">IMDB</td>
+                                            <td data-v-7c633b6c=""><a>7.4</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MoreImages)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MoreImages)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Actor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Actor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Directors)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Directors)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Time)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Time)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MovieLink)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MovieLink)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrailerLink)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrailerLink)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Viewed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Viewed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MetaKeywords)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MetaKeywords)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MetaDescriptions)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MetaDescriptions)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CountryID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Banner)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Banner)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Isbanner)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Isbanner)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-
-    </dl>
+                            <div style="padding-top: 25px;">
+                                <ul class="nav-menu" id="nav-menu">
+                                    <li>
+                                        <a href="" class="btn btn-hover">
+                                            <span>Wacth Now</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-hover">
+                                            <span>Trailer</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="film-desc" style="padding-top: 15px; margin: 20px">
+                    <span>Nội dung</span>
+                    <div id="summary">
+                        <p class="collapse" id="collapseSummary">
+                            WandaVision is an American television miniseries created by Jac Schaeffer for the streaming service Disney+, based on Marvel Comics featuring the characters Wanda Maximoff / Scarlet Witch and Vision. It is the first television series in the Marvel Cinematic Universe (MCU) produced by Marvel Studios, sharing continuity with the films of the franchise and taking place after the events of the film Avengers: Endgame (2019). Schaeffer served as head writer with Matt Shakman directing.
+                            Elizabeth Olsen and Paul Bettany reprise their respective roles as Wanda Maximoff and Vision from the film series, with Debra Jo Rupp, Fred Melamed, Kathryn Hahn, Teyonah Parris, Randall Park, Kat Dennings, and Evan Peters also starring. By September 2018, Marvel Studios was developing a number of limited series for Disney+ centered on supporting characters from the MCU films such as Maximoff and Vision, with Olsen and Bettany returning. Schaeffer was hired in January 2019, with the series officially announced that April, and Shakman joining in August. The series pays homage to past sitcoms, with Maximoff and Vision living in a reality that takes them through different decades of television tropes. Filming began in Atlanta, Georgia, in November 2019, before production halted in March 2020 due to the COVID-19 pandemic. Production resumed in Los Angeles in September 2020 and wrapped that November.
+                            WandaVision premiered with its first two episodes on January 15, 2021, and ran for nine episodes, concluding on March 5. It is the first series, and beginning, of Phase Four of the MCU. The series received praise from critics for its recreation of past sitcoms and for the performances of its cast, especially those of Olsen, Bettany, and Hahn, though there was criticism for the finale. It was widely discussed and analyzed by fans based on various popular theories, as well as by commentators for its exploration of grief and nostalgia. The series has received numerous accolades, including 23 Primetime Emmy Award nominations, winning three. WandaVision directly sets up the film Doctor Strange in the Multiverse of Madness (2022), in which Olsen reprises her role as Maximoff, while a spin-off series is in development, with Hahn returning as Agatha Harkness and Schaeffer writing and executive producing.
+                        </p>
+                        <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@Html.Action("Category2", "Home")
+@Html.Action("Category1", "Home")

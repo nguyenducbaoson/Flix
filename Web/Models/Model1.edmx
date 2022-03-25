@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MovieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MovieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -60,10 +60,11 @@
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Email" />
           </Key>
-          <Property Name="UserName" Type="nchar" MaxLength="25" Nullable="false" />
-          <Property Name="Password" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="20" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="MovieModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -71,7 +72,8 @@
           <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MovieModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -128,25 +130,26 @@
           <Property Name="Isbanner" Type="Int32" />
           <Property Name="Active" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="MovieEntities4" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MovieEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="Movies" EntityType="Self.Movie" />
-          <EntitySet Name="Users" EntityType="MovieModel.User" />
+          <EntitySet Name="Users" EntityType="Self.User" />
         </EntityContainer>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserName" />
-          </Key>
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MovieModelStoreContainer" CdmEntityContainer="MovieEntities4">
+        <EntityContainerMapping StorageEntityContainer="MovieModelStoreContainer" CdmEntityContainer="MovieEntities5">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="MovieModel.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -206,8 +209,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MovieModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -7,9 +7,9 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        MovieEntities4 db = new MovieEntities4();
+        MovieEntities5 db = new MovieEntities5();
         public ViewResult Index()
         {
             List<Movie> lstMovie = db.Movies.OrderBy(n => n.Name).ToList();
@@ -45,9 +45,9 @@ namespace Web.Controllers
             ViewBag.lstMovie = db.Movies.ToList();
             return PartialView(lstMovie);
         }
-        public ViewResult DetailMovie(string MovieID = "1")
+        public ViewResult DetailMovie(string ID ="1")
         {
-            Movie movie = db.Movies.SingleOrDefault(n => n.MovieID == MovieID);
+            var movie = db.Movies.SingleOrDefault(n => n.MovieID == ID);
             if (movie == null)
             {
                 Response.StatusCode = 404;
