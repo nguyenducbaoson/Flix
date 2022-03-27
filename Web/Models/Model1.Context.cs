@@ -13,10 +13,10 @@ namespace Web.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MovieEntities5 : DbContext
+    public partial class MovieEntities6 : DbContext
     {
-        public MovieEntities5()
-            : base("name=MovieEntities5")
+        public MovieEntities6()
+            : base("name=MovieEntities6")
         {
         }
     

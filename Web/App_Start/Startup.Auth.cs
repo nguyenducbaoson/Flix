@@ -17,8 +17,8 @@ namespace Web.App_Start
         {
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.UseFacebookAuthentication(
-                appId: "674102500308122",
-                appSecret : "81870c5763cde2c23a5b9b1f6378a53f"
+                appId: "2412150348926508",
+                appSecret : "43b846231522e6e40fc67666921efb85"
                 ) ;
         }
     }

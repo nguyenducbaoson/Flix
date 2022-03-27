@@ -15,7 +15,8 @@ namespace Web.Models
     public partial class User
     {
         public string Email { get; set; }
-        public string Password { get; set; }
         public string FullName { get; set; }
+        public string Password { get; set; }
+        public Nullable<bool> Permission { get; set; }
     }
 }

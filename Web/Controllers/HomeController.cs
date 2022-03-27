@@ -9,7 +9,7 @@ namespace Web.Controllers
 {
     public class HomeController : BaseController
     {
-        MovieEntities5 db = new MovieEntities5();
+        MovieEntities6 db = new MovieEntities6();
         public ViewResult Index()
         {
             List<Movie> lstMovie = db.Movies.OrderBy(n => n.Name).ToList();
