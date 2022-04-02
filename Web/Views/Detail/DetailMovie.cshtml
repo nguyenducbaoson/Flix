@@ -12,14 +12,14 @@
 
         <div class="col-xl-8" style="height: auto; padding-top: 40px;">
             <div class=" detail">
-                <div style="   background-image :src("/Images/Index/wanda-banner.jpg")">
+                <div style="   background-image :src(" /Images/Index/wanda-banner.jpg")">
                     <div class="row" style="margin: 10px">
 
                         <div style="width :50%" class="col-12 col-sm-4 col-md-4 ">
                             <div class="section-header">
-                                Wandavision
+                                @Html.DisplayFor(model => model.Name)
                             </div>
-                            <img width="40%" src="~/Images/Index/wanda.png">
+                            <img width="40%" src="@Url.Content("~/Images/Index/"+@Html.DisplayFor(model => model.Image))">
                         </div>
                         <div style="width :50%" class="col-12 col-sm-8 col-md-8">
                             <div class="chitiet" style="padding-top: 20px;width:100%;margin:auto">
@@ -35,11 +35,11 @@
                                         </tr>
                                         <tr>
                                             <td style="color: white; font-weight: bold;">Category</td>
-                                            <td>Fantasy</td>
+                                            <td>@Html.DisplayFor(model => model.Category.NameCategory)</td>
                                         </tr>
                                         <tr>
                                             <td style="color: white; font-weight: bold;">Year</td>
-                                            <td data-v-7c633b6c=""><a>2021</a></td>
+                                            <td data-v-7c633b6c=""><a>@Html.DisplayFor(model => model.Year)</a></td>
                                         </tr>
                                         <tr>
                                             <td style="color: white; font-weight: bold;">Views</td>

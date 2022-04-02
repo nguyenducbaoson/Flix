@@ -12,7 +12,38 @@ namespace Web.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        MovieEntities6 db =new MovieEntities6();
+
+        Movie2Entities1 db =new Movie2Entities1();
+        [HttpPost]
+        public ActionResult Login(FormCollection f)
+        {
+            string email = f["txtemail1"].ToString();
+            Session["email"] = email;
+            if (string.IsNullOrEmpty(email))
+            {
+                ViewData["Error"] = "You must enter your email";
+            }
+            else if (!string.IsNullOrEmpty(email))
+            {
+                User user = db.Users.SingleOrDefault(n => n.Email == email);
+                if (user != null)
+                {
+                    ViewData["Error2"] = "This email is already registered";
+                }
+                else
+                {
+                    return RedirectToAction("Register", "Login",new {email});
+                }
+
+            }
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult SignIn(FormCollection f)
         {
@@ -32,16 +63,24 @@ namespace Web.Controllers
                 User user = db.Users.SingleOrDefault(n => n.Email == tk && n.Password == mk);
                 if (user != null)
                 {
-                    if (user.Permission == false)
+                    if (user.Permission == false )
                     {
-                        @Session["quyen"] = false;
-                        @Session["TK"] = user.Email;
-                        @Session["ten"] = user.Email;
-                        return RedirectToAction("Index", "Home");
+                        //if(user.PriceID ==null)
+                        //{
+                        //    return RedirectToAction("Register2", new {tk});
+
+                        //}
+                        //else if(user.PriceID!=null)
+                        //{
+                            @Session["quyen"] = true;
+                            @Session["TK"] = user.Email;
+                            @Session["ten"] = user.Email;
+                            return RedirectToAction("Index", "Home");
+                        //}
                     }
                     else
                     {
-                       
+
                     }
 
                 }
@@ -57,35 +96,31 @@ namespace Web.Controllers
         {
             return View();
         }
-        public ActionResult Login()
+
+        public ActionResult Register(string email,FormCollection f)
         {
-            return View();
-        }
-        public ActionResult Register()
-        {
-            return View();
-        }
-        public ActionResult Register2()
-        {
-            return View();
-        }
-        public ActionResult CreditCard()
-        {
-            return View();
-        }
-        private Uri RedirectUri
-        {
-            get
+            ViewData["email"] = email;
+            string pass = f["password"];
+            if (string.IsNullOrEmpty(pass))
             {
-                var uriBuilder = new UriBuilder(Request.Url);
-                uriBuilder.Query = null;
-                uriBuilder.Fragment = null;
-                uriBuilder.Path = Url.Action("Facebookcallback");
-                return uriBuilder.Uri;
+                ViewData["error"] = "you must enter a password";
             }
+            else
+            {
+                User tk = new User();
+                tk.Email = (string)Session["email"];
+                tk.Password = pass;
+                tk.Permission = false;
+                tk.FullName = (string)Session["email"];
+                db.Users.Add(tk);
+                db.SaveChanges();
+                return RedirectToAction("Register2");
+            }
+            return View();
         }
         public ActionResult LoginFacebook()
         {
+           
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
@@ -97,7 +132,7 @@ namespace Web.Controllers
             });
             return Redirect(loginUrl.AbsoluteUri);
         }
-        public ActionResult Facebookcallback(string code, User tk, FormCollection coll)
+        public ActionResult Facebookcallback(string code, User tk)
         {
             var fb = new FacebookClient();
             dynamic result = fb.Post("oauth/access_token", new
@@ -143,6 +178,27 @@ namespace Web.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Register2()
+        {
+            return View();
+        }
+        public ActionResult CreditCard()
+        {
+            return View();
+        }
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("Facebookcallback");
+                return uriBuilder.Uri;
+            }
+        }
+   
         public ActionResult DangXuat()
         {
             @Session["ten"] = null;

@@ -26,7 +26,7 @@ namespace Web.Models
         public string Country { get; set; }
         public string MovieLink { get; set; }
         public string TrailerLink { get; set; }
-        public Nullable<int> CategoryID { get; set; }
+        public int CategoryID { get; set; }
         public Nullable<double> Rate { get; set; }
         public int Viewed { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
@@ -40,5 +40,7 @@ namespace Web.Models
         public string Banner { get; set; }
         public Nullable<int> Isbanner { get; set; }
         public Nullable<int> Active { get; set; }
+    
+        public virtual Category Category { get; set; }
     }
 }

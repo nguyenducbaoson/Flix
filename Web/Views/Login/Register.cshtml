@@ -1,7 +1,9 @@
 ﻿
 @{
     Layout = null;
+
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,31 +29,21 @@
 
         <div class="showcase-content">
             <div class="formm">
-                <form>
+                @using (Html.BeginForm("Register", "Login"))
+                {
                     <h1>
                         Welcome back!
                         Joining Flix is easy
                         Email
                     </h1>
-                    <p>baoson20022001@gmail.com</p>
+                    <p>@ViewData["email"]</p>
                     <div class="info">
-                        <input class="email" type="password" placeholder=" Enter your Password">
+                        <input class="email" type="password"name="password" placeholder=" Enter your Password">
                     </div>
                     <div class="btn">
-                        <button class="btn-primary" type="submit"><a href="@Url.Action("Register2","Login")">Register</a></button>
+                        <button class="btn-primary" type="submit">Register</button>
                     </div>
-
-                    <div class="help">
-                        <div>
-                            <input value="true" type="checkbox"><label>Remember me</label>
-                        </div>
-
-                        <a href="https://www.netflix.com/dz-en/LoginHelp">Need Help ?</a>
-
-                    </div>
-
-                </form>
-
+                }
             </div>
             <div class="signup">
                 <p>New to Flix ?</p>

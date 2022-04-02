@@ -7,9 +7,9 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
-        MovieEntities6 db = new MovieEntities6();
+        Movie2Entities1 db = new Movie2Entities1();
         public ViewResult Index()
         {
             List<Movie> lstMovie = db.Movies.OrderBy(n => n.Name).ToList();
@@ -17,7 +17,7 @@ namespace Web.Controllers
         }
         public PartialViewResult Banner()
         {
-            List<Movie> lstMovie = db.Movies.Where(n => n.Isbanner == 1 && n.Active!=1).OrderBy(n => n.Name).ToList();
+            List<Movie> lstMovie = db.Movies.Where(n => n.Isbanner == 1 && n.Active!=1 ).OrderBy(n => n.Name).ToList();
             ViewBag.lstMovie = db.Movies.ToList();
             return PartialView(lstMovie);
         }
@@ -44,16 +44,6 @@ namespace Web.Controllers
             List<Movie> lstMovie = db.Movies.Where(n => n.CategoryID == 1021).OrderBy(n => n.Name).ToList();
             ViewBag.lstMovie = db.Movies.ToList();
             return PartialView(lstMovie);
-        }
-        public ViewResult DetailMovie(string ID ="1")
-        {
-            var movie = db.Movies.SingleOrDefault(n => n.MovieID == ID);
-            if (movie == null)
-            {
-                Response.StatusCode = 404;
-                return null;
-            }
-            return View(movie);
         }
     }
 }

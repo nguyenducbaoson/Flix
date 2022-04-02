@@ -16,7 +16,7 @@ namespace Web.Controllers
             if (a == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new
-                    RouteValueDictionary(new { controller = "Login", action = "Login", Area = "" }));
+                    RouteValueDictionary(new { controller = "", action = "", Area = "" }));
             }
             base.OnActionExecuting(filterContext);
         }

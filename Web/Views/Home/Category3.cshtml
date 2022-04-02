@@ -11,7 +11,7 @@
                     @foreach (var item in Model)
                     {
                     <div class="owl-item" style="width: 295px; margin-right: 15px;">
-                        <a href="@Url.Action("DetailMovie",new { @MoiveID = item.MovieID})" class="movie-item">
+                        <a href="@Url.Action("DetailMovie","Detail",new { @MovieID = item.MovieID})" class="movie-item">
                             <img src="@Url.Content("~/Images/Index/"+item.Image)" alt="">
                             <div class="movie-item-content">
                                 <div class="movie-item-title">

@@ -12,11 +12,10 @@ namespace Web.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Country
+    public partial class tAnhSP
     {
-        public int CountryID { get; set; }
-        public string Name { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public bool Status { get; set; }
+        public string MaSP { get; set; }
+        public string TenFileAnh { get; set; }
+        public Nullable<short> ViTri { get; set; }
     }
 }
