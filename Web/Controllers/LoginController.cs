@@ -13,7 +13,7 @@ namespace Web.Controllers
     {
         // GET: Login
 
-        Movie2Entities1 db =new Movie2Entities1();
+        Movie5Entities1 db =new Movie5Entities1();
         [HttpPost]
         public ActionResult Login(FormCollection f)
         {

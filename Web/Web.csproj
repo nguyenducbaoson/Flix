@@ -201,10 +201,18 @@
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\WatchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cast.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Country.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -225,10 +233,10 @@
     <Compile Include="Models\Movie.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Models\Price.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tAnhSP.cs">
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -259,6 +267,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\3.jpg" />
     <Content Include="Images\7.jpg" />
+    <Content Include="Images\Detail\star %281%29.png" />
     <Content Include="Images\Index\365.jpg" />
     <Content Include="Images\Index\annabelle.jpg" />
     <Content Include="Images\Index\bat-man.jpg" />
@@ -300,6 +309,8 @@
     <Content Include="Images\Index\ritual.jpg" />
     <Content Include="Images\Index\secret-romance.jpg" />
     <Content Include="Images\Index\shades.jpg" />
+    <Content Include="Images\Index\spider-banner2.jpg" />
+    <Content Include="Images\Index\spider.png" />
     <Content Include="Images\Index\star-trek.jpg" />
     <Content Include="Images\Index\stranger-thing.jpg" />
     <Content Include="Images\Index\supergirl-banner.jpg" />
@@ -350,7 +361,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Videos\1.mp4" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -374,10 +384,13 @@
     <Content Include="Views\Home\Category1.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Detail\DetailMovie.cshtml" />
+    <Content Include="Views\Watch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Context\" />
+    <Folder Include="Videos\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

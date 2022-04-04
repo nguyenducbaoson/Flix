@@ -9,7 +9,7 @@ namespace Web.Controllers
 {
     public class DetailController : Controller
     {
-        Movie2Entities1 db = new Movie2Entities1();
+        Movie5Entities1 db = new Movie5Entities1();
         // GET: Detail
         [HttpGet]
         public ViewResult DetailMovie(string MovieID="Movie1")
@@ -21,6 +21,10 @@ namespace Web.Controllers
                 return null;
             }
             return View(movie);
+        }
+        public ViewResult Cast()
+        {
+            return View();
         }
 
     }
