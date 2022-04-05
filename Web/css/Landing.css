@@ -13,6 +13,7 @@
 }
 
 body {
+    font-family: "Cairo", sans-serif;
     font-family: Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     background: #000;
@@ -46,21 +47,21 @@ img {
     width: 100%;
     height: 100vh;
     position: relative;
-    background: url('../img/bg.jpg') no-repeat center center/cover;
+    background: url('/Images/Login/bg.jpg') no-repeat center center/cover;
 }
 
-    /* Pseudo-element to add shadow in showcase */
-    .showcase::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        background: rgba(0, 0, 0, 0.2);
-        box-shadow: 0 0 230px 150px #000 inset;
-    }
+/* Pseudo-element to add shadow in showcase */
+.showcase::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 230px 150px #000 inset;
+}
 
 .showcase-top {
     position: relative;
@@ -68,21 +69,21 @@ img {
     height: 90px;
 }
 
-    .showcase-top img {
-        width: 180px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        /* Transform to center */
-        transform: translate(-50%, -50%);
-    }
+.showcase-top img {
+    width: 180px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Transform to center */
+    transform: translate(-50%, -50%);
+}
 
-    .showcase-top a {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translate(-50%, -50%);
-    }
+.showcase-top a {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+}
 
 .showcase-content {
     display: flex;
@@ -96,21 +97,21 @@ img {
     align-items: center;
 }
 
-    .showcase-content h1 {
-        font-weight: bold;
-        font-size: 5.2rem;
-        line-height: 1.2;
-        margin-bottom: 1.2rem;
-    }
+.showcase-content h1 {
+    font-weight: bold;
+    font-size: 5.2rem;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+}
 
-    .showcase-content p {
-        text-transform: uppercase;
-        color: #fff;
-        font-size: 2rem;
-        line-height: 1.2;
-        margin-bottom: 2rem;
-        font-weight: normal;
-    }
+.showcase-content p {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    font-weight: normal;
+}
 
 /* Tabs */
 .tabs {
@@ -119,28 +120,28 @@ img {
     border-bottom: 2px solid #3d3d3d;
 }
 
-    .tabs .container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 1rem;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
+.tabs .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
-    .tabs p {
-        font-size: 1.1rem;
-        padding-top: 0.5rem;
-    }
+.tabs p {
+    font-size: 1.1rem;
+    padding-top: 0.5rem;
+}
 
-    .tabs .container > div {
-        padding: 1.5rem;
-    }
+.tabs .container > div {
+    padding: 1.5rem;
+}
 
-        .tabs .container > div:hover {
-            color: #fff;
-            cursor: pointer;
-        }
+.tabs .container > div:hover {
+    color: #fff;
+    cursor: pointer;
+}
 
 .tab-border {
     border-bottom: var(--netflix-red) 4px solid;
@@ -195,6 +196,7 @@ img {
     grid-template-columns: 3fr 1fr;
     align-items: center;
     justify-content: center;
+
 }
 
 /* Table */
@@ -205,22 +207,22 @@ img {
     border-spacing: 0;
 }
 
-    .table thead th {
-        padding: 1rem;
-    }
+.table thead th {
+    padding: 1rem;
+}
 
-    .table tbody tr td {
-        padding: 0.75rem 2rem;
-        text-align: center;
-    }
+.table tbody tr td {
+    padding: 0.75rem 2rem;
+    text-align: center;
+}
 
-        .table tbody tr td:first-child {
-            text-align: left;
-        }
+.table tbody tr td:first-child {
+    text-align: left;
+}
 
-    .table tbody tr:nth-child(odd) {
-        background: #222;
-    }
+.table tbody tr:nth-child(odd) {
+    background: #222;
+}
 
 /* Footer */
 
@@ -230,24 +232,24 @@ img {
     overflow: auto;
 }
 
-    .footer .footer-columns {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 1.5rem;
-    }
+.footer .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5rem;
+}
 
-    .footer li {
-        line-height: 2;
-    }
+.footer li {
+    line-height: 2;
+}
 
-    .footer, .footer a {
-        color: #999;
-        font-size: 0.9rem;
-    }
+.footer, .footer a {
+    color: #999;
+    font-size: 0.9rem;
+}
 
-        .footer p {
-            margin-bottom: 1.5rem;
-        }
+.footer p {
+    margin-bottom: 1.5rem;
+}
 
 
 
@@ -301,7 +303,7 @@ img {
 
 .btn {
     display: inline-block;
-    background: var(--netflix-red);
+    background: #c0392b;
     color: #fff;
     margin-right: 0.5rem;
     padding: 0.5rem 1.2rem;
@@ -314,10 +316,10 @@ img {
     border-radius: 3px;
 }
 
-    .btn:hover {
-        background: var(--netflix-red-hover);
-        opacity: 0.9;
-    }
+.btn:hover {
+    background: var(--netflix-red-hover);
+    opacity: 0.9;
+}
 
 .btn-rounded {
     border-radius: 5px;
@@ -376,7 +378,7 @@ img {
     .text-lg {
         font-size: 1.2rem;
     }
-
+    
     .text-md {
         font-size: 1rem;
     }
@@ -405,3 +407,35 @@ img {
         grid-template-columns: 1fr;
     }
 }
+/*LOGO*/
+    .main-color {
+        color: var(--main-color);
+    }
+    * {
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .logo {
+        font-size: 2rem;
+        font-weight: 900;
+    }
+    :root {
+        --main-color: #c0392b;
+        --body-bg: #181616;
+        --box-bg: #221f1f;
+        --text-color: #ffffff;
+        --nav-height: 60px;
+        --space-top: 30px;
+    }
+    :root {
+        --netflix-red: #FF2323;
+        --netflix-red-hover: #FF0000;
+        --dark: #161616;
+        --shadow: 0px 1.5px 0 rgba(0, 0, 0, 0.45);
+    }
+    a:-webkit-any-link {
+        cursor: pointer;
+    }
+</style>

@@ -9,12 +9,20 @@
     <title>Flix</title>
     <link rel="stylesheet" href="~/css/grid.css">
     <link rel="stylesheet" href="~/css/app.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- OWL CAROUSEL -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+    <!-- BOX ICONS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header class="showcase">
         @*<a href="#" class="logo">
-            <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span class="main-color">i</span>x
-        </a>*@
+                <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span class="main-color">i</span>x
+            </a>*@
         <div class="showcase-content">
 
             <div class="formm">
@@ -52,7 +60,7 @@
         </div>
 
 
-        <footer>
+        @*<footer>
 
             <div class="ftr-content">
                 <div class="contact">
@@ -73,11 +81,10 @@
                 </div>
             </div>
 
-        </footer>
+        </footer>*@
 
     </header>
-
-
+    @Html.Action("Footer", "Home")
 </body>
 </html>
 <style>

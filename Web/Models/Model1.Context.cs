@@ -13,10 +13,10 @@ namespace Web.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Movie5Entities1 : DbContext
+    public partial class MovieEntities2 : DbContext
     {
-        public Movie5Entities1()
-            : base("name=Movie5Entities1")
+        public MovieEntities2()
+            : base("name=MovieEntities2")
         {
         }
     
@@ -29,6 +29,7 @@ namespace Web.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<Pay> Pays { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }

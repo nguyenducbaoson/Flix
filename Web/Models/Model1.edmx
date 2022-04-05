@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Movie5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MovieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cast">
           <Key>
             <PropertyRef Name="CastID" />
@@ -67,16 +67,26 @@
           <Property Name="Banner" Type="nvarchar(max)" />
           <Property Name="Isbanner" Type="int" />
           <Property Name="Active" Type="int" />
+          <Property Name="IDPay" Type="int" />
+        </EntityType>
+        <EntityType Name="Pay">
+          <Key>
+            <PropertyRef Name="IDPay" />
+          </Key>
+          <Property Name="IDPay" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDPrice" Type="int" />
+          <Property Name="Datedinscription" Type="datetime" />
+          <Property Name="Datedexpiration" Type="datetime" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDPrice" />
           </Key>
-          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="NamePrice" Type="nvarchar" MaxLength="20" />
-          <Property Name="Datedinscription" Type="datetime" />
-          <Property Name="Datedexpiration" Type="datetime" />
+          <Property Name="IDPrice" Type="int" Nullable="false" />
+          <Property Name="NamePrice" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="bigint" Nullable="false" />
+          <Property Name="About" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -110,11 +120,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Movie5ModelStoreContainer">
+        <Association Name="FK_Movie_Pay">
+          <End Role="Pay" Type="Self.Pay" Multiplicity="0..1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pay">
+              <PropertyRef Name="IDPay" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="IDPay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="IDPrice" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="IDPrice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MovieModelStoreContainer">
           <EntitySet Name="Cast" EntityType="Self.Cast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pay" EntityType="Self.Pay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -122,12 +157,20 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Movie" EntitySet="Movie" />
           </AssociationSet>
+          <AssociationSet Name="FK_Movie_Pay" Association="Self.FK_Movie_Pay">
+            <End Role="Pay" EntitySet="Pay" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_Price" Association="Self.FK_Pay_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Movie5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MovieModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Cast">
           <Key>
             <PropertyRef Name="CastID" />
@@ -191,17 +234,31 @@
           <Property Name="Banner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Isbanner" Type="Int32" />
           <Property Name="Active" Type="Int32" />
+          <Property Name="IDPay" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Movie_Category" FromRole="Movie" ToRole="Category" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Movie_Pay" FromRole="Movie" ToRole="Pay" />
+        </EntityType>
+        <EntityType Name="Pay">
+          <Key>
+            <PropertyRef Name="IDPay" />
+          </Key>
+          <Property Name="IDPay" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDPrice" Type="Int32" />
+          <Property Name="Datedinscription" Type="DateTime" Precision="3" />
+          <Property Name="Datedexpiration" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Movies" Relationship="Self.FK_Movie_Pay" FromRole="Pay" ToRole="Movie" />
+          <NavigationProperty Name="Price" Relationship="Self.FK_Pay_Price" FromRole="Pay" ToRole="Price" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDPrice" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NamePrice" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Datedinscription" Type="DateTime" Precision="3" />
-          <Property Name="Datedexpiration" Type="DateTime" Precision="3" />
+          <Property Name="IDPrice" Type="Int32" Nullable="false" />
+          <Property Name="NamePrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Int64" Nullable="false" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pays" Relationship="Self.FK_Pay_Price" FromRole="Price" ToRole="Pay" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -235,11 +292,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Movie5Entities1" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Movie_Pay">
+          <End Role="Pay" Type="Self.Pay" Multiplicity="0..1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pay">
+              <PropertyRef Name="IDPay" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="IDPay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="IDPrice" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="IDPrice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MovieEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Casts" EntityType="Self.Cast" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="Movies" EntityType="Self.Movie" />
+          <EntitySet Name="Pays" EntityType="Self.Pay" />
           <EntitySet Name="Prices" EntityType="Self.Price" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -247,15 +329,23 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Movie" EntitySet="Movies" />
           </AssociationSet>
+          <AssociationSet Name="FK_Movie_Pay" Association="Self.FK_Movie_Pay">
+            <End Role="Pay" EntitySet="Pays" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_Price" Association="Self.FK_Pay_Price">
+            <End Role="Price" EntitySet="Prices" />
+            <End Role="Pay" EntitySet="Pays" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Movie5ModelStoreContainer" CdmEntityContainer="Movie5Entities1">
+        <EntityContainerMapping StorageEntityContainer="MovieModelStoreContainer" CdmEntityContainer="MovieEntities2">
           <EntitySetMapping Name="Casts">
-            <EntityTypeMapping TypeName="Movie5Model.Cast">
+            <EntityTypeMapping TypeName="MovieModel.Cast">
               <MappingFragment StoreEntitySet="Cast">
                 <ScalarProperty Name="CastID" ColumnName="CastID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -266,7 +356,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Movie5Model.Category">
+            <EntityTypeMapping TypeName="MovieModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="NameCategory" ColumnName="NameCategory" />
@@ -280,7 +370,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="Movie5Model.Country">
+            <EntityTypeMapping TypeName="MovieModel.Country">
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -290,7 +380,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Movies">
-            <EntityTypeMapping TypeName="Movie5Model.Movie">
+            <EntityTypeMapping TypeName="MovieModel.Movie">
               <MappingFragment StoreEntitySet="Movie">
                 <ScalarProperty Name="MovieID" ColumnName="MovieID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -318,22 +408,33 @@
                 <ScalarProperty Name="Banner" ColumnName="Banner" />
                 <ScalarProperty Name="Isbanner" ColumnName="Isbanner" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="IDPay" ColumnName="IDPay" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Prices">
-            <EntityTypeMapping TypeName="Movie5Model.Price">
-              <MappingFragment StoreEntitySet="Price">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="Pays">
+            <EntityTypeMapping TypeName="MovieModel.Pay">
+              <MappingFragment StoreEntitySet="Pay">
+                <ScalarProperty Name="IDPay" ColumnName="IDPay" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="NamePrice" ColumnName="NamePrice" />
+                <ScalarProperty Name="IDPrice" ColumnName="IDPrice" />
                 <ScalarProperty Name="Datedinscription" ColumnName="Datedinscription" />
                 <ScalarProperty Name="Datedexpiration" ColumnName="Datedexpiration" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="MovieModel.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="IDPrice" ColumnName="IDPrice" />
+                <ScalarProperty Name="NamePrice" ColumnName="NamePrice" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="About" ColumnName="About" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Movie5Model.sysdiagram">
+            <EntityTypeMapping TypeName="MovieModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -344,7 +445,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Movie5Model.User">
+            <EntityTypeMapping TypeName="MovieModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />

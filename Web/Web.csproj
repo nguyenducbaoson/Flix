@@ -239,6 +239,9 @@
     <Compile Include="Models\Movie.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Pay.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Price.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -338,6 +341,7 @@
     <Content Include="Images\Index\wife.jpg" />
     <Content Include="Images\Index\your-name.jpg" />
     <Content Include="Images\Login\background.jpg" />
+    <Content Include="Images\Login\bg.jpg" />
     <Content Include="Images\Login\netflix-bg.jpg" />
     <Content Include="Images\Login\netflix-logo.png" />
     <Content Include="Models\Model1.Context.tt">
@@ -397,6 +401,8 @@
     <Content Include="Views\Watch\Index.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Login\Landing.cshtml" />
+    <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Views\Home\Pay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

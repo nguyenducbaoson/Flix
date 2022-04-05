@@ -12,20 +12,22 @@ namespace Web.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Price
+    public partial class Pay
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Price()
+        public Pay()
         {
-            this.Pays = new HashSet<Pay>();
+            this.Movies = new HashSet<Movie>();
         }
     
-        public int IDPrice { get; set; }
-        public string NamePrice { get; set; }
-        public long Cost { get; set; }
-        public string About { get; set; }
+        public int IDPay { get; set; }
+        public string Email { get; set; }
+        public Nullable<int> IDPrice { get; set; }
+        public Nullable<System.DateTime> Datedinscription { get; set; }
+        public Nullable<System.DateTime> Datedexpiration { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pay> Pays { get; set; }
+        public virtual ICollection<Movie> Movies { get; set; }
+        public virtual Price Price { get; set; }
     }
 }

@@ -63,20 +63,10 @@ namespace Web.Controllers
                 User user = db.Users.SingleOrDefault(n => n.Email == tk && n.Password == mk);
                 if (user != null)
                 {
-                    if (user.Permission == false )
+                    if (user.Permission == false)
                     {
-                        //if(user.PriceID ==null)
-                        //{
-                        //    return RedirectToAction("Register2", new {tk});
-
-                        //}
-                        //else if(user.PriceID!=null)
-                        //{
-                            @Session["quyen"] = true;
-                            @Session["TK"] = user.Email;
-                            @Session["ten"] = user.Email;
-                            return RedirectToAction("Index", "Home");
-                        //}
+                        Session["User"] = user;
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -201,10 +191,8 @@ namespace Web.Controllers
    
         public ActionResult DangXuat()
         {
-            @Session["ten"] = null;
-            @Session["quyen"] = null;
-            @Session["TK"] = null;
-            return Redirect("/");
+            Session["User"] = null;
+            return RedirectToAction("Index","Home");
 
         }
         public ActionResult Landing()

@@ -40,7 +40,9 @@ namespace Web.Models
         public string Banner { get; set; }
         public Nullable<int> Isbanner { get; set; }
         public Nullable<int> Active { get; set; }
+        public Nullable<int> IDPay { get; set; }
     
         public virtual Category Category { get; set; }
+        public virtual Pay Pay { get; set; }
     }
 }

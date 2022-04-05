@@ -45,5 +45,13 @@ namespace Web.Controllers
             ViewBag.lstMovie = db.Movies.ToList();
             return PartialView(lstMovie);
         }
+        public PartialViewResult Footer()
+        {
+            return PartialView();
+        }
+        public PartialViewResult Pay()
+        {
+            return PartialView();
+        }
     }
 }

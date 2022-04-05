@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
     <!-- BOX ICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- APP CSS -->
     <link href="~/css/app.css" rel="stylesheet" />
     <link href="~/css/grid.css" rel="stylesheet" />
@@ -53,9 +52,18 @@
                     <li><a href="#">Series</a></li>
                     <li><a href="#">About</a></li>
                     <li>
-                        <a href="#" class="btn btn-hover">
-                            <span>Log out</span>
+                        @if (Session["User"] != null && Session["User"] != "")
+                        {
+                            <a href="@Url.Action("DangXuat","Login")" class="btn btn-hover">
+                                <span>Log Out</span>
+                            </a>
+                        }
+                        else
+                        {
+                        <a href="@Url.Action("SignIn","Login")" class="btn btn-hover">
+                            <span>Sign In</span>
                         </a>
+                        }
                     </li>
                 </ul>
                 <!-- MOBILE MENU TOGGLE -->
@@ -75,8 +83,8 @@
                             <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span class="main-color">i</span>x
                         </a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut veniam ex quos hic id nobis beatae earum sapiente! Quod ipsa exercitationem officiis non error illum minima iusto et. Dolores, quibusdam?
-                        </p>
+                            Flix is a Website movie streaming service. 
+                            The service is subscription based with millions of subscribers worldwide. Content is ad free and enables the user to skip the title sequence for shows.
                         <div class="social-list">
                             <a href="https://www.facebook.com/AndrewwwNguyen" class="social-item">
                                 <i class="bx bxl-facebook"></i>
