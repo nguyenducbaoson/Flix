@@ -207,5 +207,9 @@ namespace Web.Controllers
             return Redirect("/");
 
         }
+        public ActionResult Landing()
+        {
+            return View();
+        }
     }
 }

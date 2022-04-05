@@ -1,0 +1,76 @@
+﻿@using Web.Models
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Movie>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<div class="section">
+    <div class="container">
+        <div class="section-header">
+            Search Results : <p style="color: #c0392b">&nbsp @ViewData["result"]</p>
+        </div>
+        <div class="movies-slide carousel-nav-center owl-carousel owl-loaded owl-drag">
+            <div class="owl-stage-outer">
+                <div class="owl-stage" style="transform: translate3d(-310px, 0px, 0px); transition: all 0s ease 0s; width: 2170px;">*@
+<div class="section-header">
+    Search Results : <p style="color: #c0392b">&nbsp @ViewBag.CurrentFilter</p>
+</div>
+<div style="max-width :95%;padding-left:5px">
+    <div class="row" style="padding: 10px;text-align:center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-4" style="margin-top: 10px">
+                <div class="owl-item" style="width: 285px; margin-right: 5px; padding: 0 5px;">
+                    <a href="@Url.Action("DetailMovie","Detail",new { @MovieID = item.MovieID})" class="movie-item">
+                        <img src="@Url.Content("~/Images/Index/"+item.Image)" alt="">
+                        <div class="movie-item-content">
+                            <div class="movie-item-title">
+                                @item.Name
+                            </div>
+                            <div class="movie-infos">
+                                <div class="movie-info">
+                                    <i class="bx bxs-star"></i>
+                                    <span>9.5</span>
+                                </div>
+                                <div class="movie-info">
+                                    <i class="bx bxs-time"></i>
+                                    <span>120 mins</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>HD</span>
+                                </div>
+                                <div class="movie-info">
+                                    <span>16+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    <div>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</div>
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("Search", new { page = page ,currentFilter =ViewBag.CurrentFilter }))
+    </div>
+
+    <link href="~/css/PagedList.css" rel="stylesheet" />
+</div>
+
+<style>
+    * {
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+</style>
+@*</div>
+                </div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="bx bx-chevron-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="bx bx-chevron-right"></i></button></div><div class="owl-dots disabled"></div>
+            </div>
+        </div>
+    </div>*@
+

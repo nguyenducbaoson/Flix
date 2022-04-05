@@ -27,7 +27,7 @@
                 foreach (var item in Model)
                 {
                     i++;
-                    <div class="owl-item" style="width: 295px; margin-right: 15px;">
+                    <div class="owl-item" style="width: 295px">
                         <a href="@Url.Action("DetailMovie","Detail",new { @MovieID = item.MovieID})" class="movie-item">
                             <img src="@Url.Content("~/Images/Index/"+item.Image)" alt="">
                             <div class="movie-item-content">
