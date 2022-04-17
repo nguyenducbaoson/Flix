@@ -10,7 +10,6 @@ namespace WebXemPhim.Controllers
 {
     public class HomeController : Controller
     {
-        //ssssss
         Movie12Entities db = new Movie12Entities();
         public ViewResult Index()
         {
