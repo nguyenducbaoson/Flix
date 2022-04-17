@@ -15,6 +15,7 @@ namespace Web.Controllers
             List<Movie> lstMovie = db.Movies.OrderBy(n => n.Name).ToList();
             return View(db.Movies.ToList());
         }
+        //
         public PartialViewResult Banner()
         {
             List<Movie> lstMovie = db.Movies.Where(n => n.Isbanner == 1 && n.Active!=1).OrderBy(n => n.Name).ToList();
