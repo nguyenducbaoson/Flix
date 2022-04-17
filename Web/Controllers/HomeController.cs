@@ -8,7 +8,7 @@ using Web.Models;
 namespace Web.Controllers
 {
     public class HomeController : Controller
-    {
+    {//
         Movie5Entities1 db = new Movie5Entities1();
         public ViewResult Index()
         {
