@@ -4,7 +4,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="hero-section">
     <!-- HERO SLIDE -->
     <div class="hero-slide">
@@ -99,4 +98,16 @@
 </div>
 @Html.Action("Category2", "Home")
 @Html.Action("Category1", "Home")
-@Html.Action("Pay", "Home")
+@if ((Session["Pay"] == null && Session["User"] != null))
+{
+    <p>
+        @Html.Action("Pay", "Pay")
+    </p>
+}
+else if (Session["User"] == null)
+{
+    @Html.Action("Pay", "Pay")
+}
+else { 
+    <p></p>
+}

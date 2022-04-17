@@ -17,17 +17,17 @@ namespace Web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pay()
         {
-            this.Movies = new HashSet<Movie>();
+            this.Users = new HashSet<User>();
         }
     
-        public int IDPay { get; set; }
+        public System.Guid IDPay { get; set; }
         public string Email { get; set; }
         public Nullable<int> IDPrice { get; set; }
         public Nullable<System.DateTime> Datedinscription { get; set; }
         public Nullable<System.DateTime> Datedexpiration { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movie> Movies { get; set; }
         public virtual Price Price { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

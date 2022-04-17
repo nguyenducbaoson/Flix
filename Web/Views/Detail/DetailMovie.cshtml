@@ -8,7 +8,13 @@
 <link href="~/css/Detail/css.css" rel="stylesheet" />
 <link href="~/css/Detail/classy-nav.css" rel="stylesheet" />
 <link href="~/css/Detail/font-awesome.min.css" rel="stylesheet" />
+<style>
+    .btn {
+        cursor: pointer;
+    }
+</style>
 <div class="container clear_navar" style="padding-top: 60px;">
+
     <div class="row" style="max-width: 80%">
 
         <div class="col-xl-8" style="height: auto; padding-top: 40px">
@@ -44,7 +50,7 @@
                                         </tr>
                                         <tr>
                                             <td style="color: white; font-weight: bold;">Category</td>
-                                            <td>@Html.DisplayFor(model => model.Category.NameCategory)</td>
+                                            <td>@Html.DisplayFor(model => model.CategoryID)</td>
                                         </tr>
                                         <tr>
                                             <td style="color: white; font-weight: bold;">Year</td>
@@ -66,14 +72,25 @@
                             <div style="padding-top: 25px;">
                                 <ul class="nav-menu" id="nav-menu">
                                     <li>
-                                        <a href="@Url.Action("Index","Watch",new {@MovieID = Model.MovieID })" class="btn btn-hover">
-                                            <span>Watch Now</span>
-                                        </a>
+                                        @if (Session["User"] != null)
+                                        {
+                                            <a href="@Url.Action("Index","Watch",new {@MovieID = Model.MovieID })" class="btn btn-hover">
+                                                <span>Watch Now</span>
+                                            </a>
+                                        }
+                                        @if (Session["User"] == null)
+                                        {
+                                            <a id="demo" class="btn btn-hover">
+                                                <span>Watch Now</span>
+                                            </a>
+                                        }
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-hover">
-                                            <span>Watch Later</span>
-                                        </a>
+                                        <p class="btn btn-hover" onclick="return them('+@Session["TK"]+','+@Model.MovieID+')">
+
+                                            <a href="#" class="btn btn-hover">
+                                                <span>Watch Later</span>
+                                            </a>
                                     </li>
                                 </ul>
                             </div>
@@ -93,24 +110,44 @@
                 </div>
             </div>
             <div class="section-header">
-               TRAILER
+                TRAILER
             </div>
             <div id="instructions">
                 @*<iframe src="https://stream1.linhminaz.com/v/MMsp8iIVyHPz7WU" frameborder="0" allowFullScreen="true" width="640" height="320"></iframe>*@
                 <iframe src="@Html.DisplayFor(model => model.MovieLink)" frameborder="0" allowFullScreen="true" width="1280" height="640"></iframe>
                 @*<video id="my_video_1" class="video-js vjs-default-skin" width="900px" height="267px"
-                   controls preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
-                   data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
-                <source src="https://stream1.linhminaz.com/v/3aOilI3oLvmGO5j" type='video/mp4' />
-                <source src="https://stream1.linhminaz.com/v/3aOilI3oLvmGO5j" type='video/webm' />
-            </video>*@
+                           controls preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
+                           data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+                        <source src="https://stream1.linhminaz.com/v/3aOilI3oLvmGO5j" type='video/mp4' />
+                        <source src="https://stream1.linhminaz.com/v/3aOilI3oLvmGO5j" type='video/webm' />
+                    </video>*@
             </div>
         </div>
     </div>
-    <div class="row" style="max-width:20%">
-        asdasddasd
-    </div>
 </div>
-
+@Html.Action("Load", "Pay")
 @Html.Action("Category2", "Home")
 @Html.Action("Category1", "Home")
+<script>
+    function them(e, i) {
+
+        $.ajax({
+            type: 'POST',
+            url: 'https://localhost:44301/api/MyListApi/Themlist?email=' + e + '&id=' + i,
+            dataType: 'json',
+            success: function (data) {
+                if (data == false)
+                    alert("Thêm Vào Danh sách xem sau Không Thành Công");
+                else {
+                    alert("Thêm Vào Danh Sách xem sau Thành Công");
+
+                }
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+
+    }
+
+</script>

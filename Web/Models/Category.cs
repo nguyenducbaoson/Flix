@@ -14,12 +14,6 @@ namespace Web.Models
     
     public partial class Category
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
-        {
-            this.Movies = new HashSet<Movie>();
-        }
-    
         public int CategoryID { get; set; }
         public string NameCategory { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
@@ -28,8 +22,5 @@ namespace Web.Models
         public string ModifiedBy { get; set; }
         public string MetaKeywords { get; set; }
         public bool Status { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movie> Movies { get; set; }
     }
 }

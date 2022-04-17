@@ -103,8 +103,9 @@ img {
         a.movie-item:hover {
             color: unset;
         }
-
+       
 .btn {
+    cursor:pointer;
     color: #ffffff;
     padding: 0.25rem 1.5rem;
     text-transform: uppercase;

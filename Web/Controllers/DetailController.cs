@@ -9,7 +9,7 @@ namespace Web.Controllers
 {
     public class DetailController : Controller
     {
-        Movie5Entities1 db = new Movie5Entities1();
+        Movie12Entities db = new Movie12Entities();
         // GET: Detail
         [HttpGet]
         public ViewResult DetailMovie(string MovieID="Movie1")

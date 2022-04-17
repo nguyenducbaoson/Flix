@@ -4,18 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="56145676ddcb44778c8d37524c9e0b31" Name="Diagram1">
-        <EntityTypeShape EntityType="MovieModel.Cast" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Category" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Country" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Movie" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Pay" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.Price" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.sysdiagram" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MovieModel.User" Width="1.5" PointX="7.75" PointY="8.375" IsExpanded="true" />
-        <AssociationConnector Association="MovieModel.FK_Movie_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_Movie_Pay" ManuallyRouted="false" />
-        <AssociationConnector Association="MovieModel.FK_Pay_Price" ManuallyRouted="false" />
+      <Diagram DiagramId="fcac55878f5b42ada2770904ddf5f43f" Name="Diagram1">
+        <EntityTypeShape EntityType="Movie12Model.Cast" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie12Model.Category" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie12Model.Country" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie12Model.Movie" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie12Model.MyList" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie12Model.Pay" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie12Model.Price" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Movie12Model.User" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Movie12Model.FK_Pay_Price" ManuallyRouted="false" />
+        <AssociationConnector Association="Movie12Model.FK_User_Pay" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

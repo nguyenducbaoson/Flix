@@ -18,6 +18,8 @@ namespace Web.Models
         public string FullName { get; set; }
         public string Password { get; set; }
         public bool Permission { get; set; }
-        public string PriceID { get; set; }
+        public Nullable<System.Guid> IDPay { get; set; }
+    
+        public virtual Pay Pay { get; set; }
     }
 }

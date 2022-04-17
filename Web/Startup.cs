@@ -1,3 +1,4 @@
+using Fluent.Infrastructure.FluentStartup;
 using Microsoft.Owin;
 using Owin;
 
@@ -9,7 +10,7 @@ namespace Web
     {
         public void Configuration(IAppBuilder app)
         {
-            //AuthStartup.ConfigureAuth(app);
+            AuthStartup.ConfigureAuth(app);
         }
     }
 }

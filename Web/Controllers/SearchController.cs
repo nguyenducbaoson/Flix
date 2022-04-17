@@ -11,7 +11,7 @@ namespace Web.Controllers
     public class SearchController : Controller
     {
         // GET: Search
-        Movie5Entities1 db = new Movie5Entities1();
+        Movie12Entities db = new Movie12Entities();
         public ActionResult Search(int ?page,string SearchString,string currentFilter)
         {
             var result = new List<Movie>();

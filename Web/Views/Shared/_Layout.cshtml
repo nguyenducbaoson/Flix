@@ -1,4 +1,4 @@
-﻿
+﻿@using Web.Models;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +21,9 @@
     <!-- APP CSS -->
     <link href="~/css/app.css" rel="stylesheet" />
     <link href="~/css/grid.css" rel="stylesheet" />
+    <link href="~/Content/Loader.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
 </head>
 
 <body>
@@ -28,15 +31,15 @@
     <div class="nav-wrapper">
         <div class="container">
             <div class="nav">
-                <a href="@Url.Action("Index","Home")" class="logo">
+                <a href="@Url.Action("Index","Home")" class="logo" style="padding-top: 10px">
                     <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>x
                 </a>
                 <ul class="nav-menu" id="nav-menu">
                     <li>
-                        @using (Html.BeginForm("Search","Search"))
+                        @using (Html.BeginForm("Search", "Search"))
                         {
                             <div class="searchBox">
-                                @Html.TextBox("SearchString",ViewBag.CurrentFilter as string, new {@class="searchInput" , placeholder = "Search"})
+                                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "searchInput", placeholder = "Search" })
                                 @*<input class="searchInput" type="text" name="SearchString" placeholder="Search">*@
                                 <button class="searchButton" type="submit">
                                     <i class="material-icons">
@@ -46,23 +49,61 @@
                             </div>
                         }
                     </li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Genre</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">Series</a></li>
-                    <li><a href="#">About</a></li>
+                    <li>
+                        @if (Session["PS"] == "a")
+                        {
+                            <a href="@Url.Action("Index","Admin")">Admin</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Index","Home")">Home</a>
+                        }
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" id="Genre">
+                            Genre
+                        </a>
+                        <div class="dropdown-menu table" id="lstGenre">
+                        </div>
+
+                    </li>
+                    <li>
+                        <a href="#" id="Country">
+                            Country
+                        </a>
+                        <div class="table" style="position: absolute; z-index: 3; background: gray;" id="lstCountry">
+                        </div>
+                    </li>
+                    <li><a href="@Url.Action("GetAllPhim","Home")">Movies</a></li>
                     <li>
                         @if (Session["User"] != null && Session["User"] != "")
                         {
+
+                            <a href="@Url.Action("Index","MyList",new {@email=(string)Session["TK"] })">
+                                <span>My List</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("SignIn","Login")">
+                                <span>My List</span>
+                            </a>
+                        }
+                    </li>
+                    <li>
+                        @if (Session["User"] != null && Session["User"] != "")
+                        {
+                            User user = (User)Session["User"];
                             <a href="@Url.Action("DangXuat","Login")" class="btn btn-hover">
                                 <span>Log Out</span>
                             </a>
                         }
                         else
                         {
-                        <a href="@Url.Action("SignIn","Login")" class="btn btn-hover">
-                            <span>Sign In</span>
-                        </a>
+                            <a href="@Url.Action("SignIn","Login")" class="btn btn-hover">
+                                <span>Sign In</span>
+                            </a>
                         }
                     </li>
                 </ul>
@@ -83,19 +124,19 @@
                             <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span class="main-color">i</span>x
                         </a>
                         <p>
-                            Flix is a Website movie streaming service. 
+                            Flix is a Website movie streaming service.
                             The service is subscription based with millions of subscribers worldwide. Content is ad free and enables the user to skip the title sequence for shows.
-                        <div class="social-list">
-                            <a href="https://www.facebook.com/AndrewwwNguyen" class="social-item">
-                                <i class="bx bxl-facebook"></i>
-                            </a>
-                            <a href="#" class="social-item">
-                                <i class="bx bxl-twitter"></i>
-                            </a>
-                            <a href="https://www.instagram.com/andrewwtechnical/" class="social-item">
-                                <i class="bx bxl-instagram"></i>
-                            </a>
-                        </div>
+                            <div class="social-list">
+                                <a href="https://www.facebook.com/AndrewwwNguyen" class="social-item">
+                                    <i class="bx bxl-facebook"></i>
+                                </a>
+                                <a href="#" class="social-item">
+                                    <i class="bx bxl-twitter"></i>
+                                </a>
+                                <a href="https://www.instagram.com/andrewwtechnical/" class="social-item">
+                                    <i class="bx bxl-instagram"></i>
+                                </a>
+                            </div>
                     </div>
                 </div>
                 <div class="col-8 col-md-6 col-sm-12">
@@ -156,7 +197,7 @@
         </div>
     </footer>
     <div class="copyright">
-        Copyright 2021 <a href="https://www.facebook.com/AndrewwwNguyen" target="_blank">
+        Copyright 2022 <a href="https://www.facebook.com/AndrewwwNguyen" target="_blank">
             Nguyen Duc Bao Son
         </a>
     </div>
@@ -173,50 +214,122 @@
 </html>
 <style>
     .searchBox {
-    background: #2f3640;
-    border-radius: 40px;
-}
-
-.searchBox:hover > .searchInput {
-    width: 240px;
-    padding: 0 6px;
-}
-
-.searchBox:hover > .searchButton {
-    background: white;
-    color: #2f3640;
-}
-
-.searchButton {
-    color: white;
-    float: right;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #2f3640;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
-}
-
-.searchInput {
-    border: none;
-    background: none;
-    outline: none;
-    float: left;
-    padding: 0;
-    color: white;
-    font-size: 16px;
-    transition: 0.4s;
-    line-height: 40px;
-    width: 0px;
-}
-
-@@media screen and (max-width: 620px) {
-    .searchBox:hover > .searchInput {
-        width: 150px;
-        padding: 0 6px;
+        background: #2f3640;
+        border-radius: 40px;
     }
-}
+
+        .searchBox:hover > .searchInput {
+            width: 240px;
+            padding: 0 6px;
+        }
+
+        .searchBox:hover > .searchButton {
+            background: white;
+            color: #2f3640;
+        }
+
+    .searchButton {
+        color: white;
+        float: right;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #2f3640;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+    }
+
+    .searchInput {
+        border: none;
+        background: none;
+        outline: none;
+        float: left;
+        padding: 0;
+        color: white;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 0px;
+    }
+
+    @@media screen and (max-width: 620px) {
+        .searchBox:hover > .searchInput {
+            width: 150px;
+            padding: 0 6px;
+        }
+    }
 </style>
+<script src="~/Content/Loader.js"></script>
+
+<script>
+
+    $(document)
+        .ajaxStart(function () {
+            $('#AjaxLoader').show();
+        })
+        .ajaxStop(function () {
+            $('#AjaxLoader').hide();
+        })
+    $(document).ready(function () {
+
+        if ($('#k').text() == "Log Out") {
+            $('#mylist').click(function () {
+                alert("Bạn Đã Đăng Nhập");
+            });
+        }
+        else {
+            $('#mylist').click(function () {
+                alert("Bạn Chưa Đăng Nhập");
+            });
+        }
+        $.ajax({
+
+            type: 'GET',
+            url: 'https://localhost:44301/api/CategoryApi',
+            dataType: 'json',
+            success: function (data) {
+                var str = '';
+                $.each(data, function (key, val) {
+                    str += '<tr  class="dropdown-item"><td>  </td><td><a href="https://localhost:44301/Home/GetMovieByCategory?id=' + val.CategoryID + '">' + val.NameCategory + '</a></td><td>  </td></tr>';
+                });
+
+                $('#lstGenre').html(str);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+        $('#lstGenre').hide();
+        $('#Genre').click(function () {
+            $('#lstCountry').hide();
+            $('#lstGenre').slideToggle();
+
+        });
+
+        $.ajax({
+
+            type: 'GET',
+            url: 'https://localhost:44301/api/CountryApi',
+            dataType: 'json',
+            success: function (data) {
+                var str = '';
+                $.each(data, function (key, val) {
+                    str += '<tr  class="dropdown-item"><td>  </td><td><a href="https://localhost:44301/Home/GetMovieByCountry?id=' + val.CountryID + '">' + val.Name + '</a></td><td>  </td></tr>';
+                });
+
+                $('#lstCountry').html(str);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+        $('#lstCountry').hide();
+        $('#Country').click(function () {
+            $('#lstGenre').hide();
+            $('#lstCountry').slideToggle();
+        });
+    })
+
+</script>

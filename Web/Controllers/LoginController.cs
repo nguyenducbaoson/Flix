@@ -13,7 +13,7 @@ namespace Web.Controllers
     {
         // GET: Login
 
-        Movie5Entities1 db =new Movie5Entities1();
+        Movie12Entities db =new Movie12Entities();
         [HttpPost]
         public ActionResult Login(FormCollection f)
         {
@@ -34,7 +34,6 @@ namespace Web.Controllers
                 {
                     return RedirectToAction("Register", "Login",new {email});
                 }
-
             }
             return View();
         }
@@ -53,6 +52,7 @@ namespace Web.Controllers
             if(string.IsNullOrEmpty(tk))
             {
                 ViewData["Error"] = "You must enter your email";
+                return PartialView("Load", "Pay");
             }
             else if(string.IsNullOrEmpty(mk))
             {
@@ -61,23 +61,53 @@ namespace Web.Controllers
             else
             {
                 User user = db.Users.SingleOrDefault(n => n.Email == tk && n.Password == mk);
+                Pay pay = db.Pays.Where(n => n.IDPay == user.IDPay).SingleOrDefault();
                 if (user != null)
                 {
                     if (user.Permission == false)
                     {
                         Session["User"] = user;
-                        return RedirectToAction("Index", "Home");
+                        Session["TK"] = user.Email;
+                        Session["Pay"] = user.IDPay;
+                        Session["goi"] = pay.IDPrice;
+                        if(string.IsNullOrEmpty(user.IDPay.ToString()))
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+        
+                            if (pay.Datedexpiration<DateTime.Now)
+                            {
+                                user.IDPay = null;
+                                Session["Pay"] = user.IDPay;
+                                Session["goi"] = pay.IDPrice;
+                                db.SaveChanges();
+                                return RedirectToAction("Index", "Home");
+                            }
+                            else
+                            {
+                                Session["User"] = user;
+                                Session["TK"] = user.Email;
+                                Session["goi"] = pay.IDPrice;
+                                Session["PS"] = "";
+                                return RedirectToAction("Index", "Home");
+                            }
+                        }
                     }
                     else
                     {
-
+                        Session["goi"] = pay.IDPrice;
+                        Session["User"] = user;
+                        Session["TK"] = user.Email;
+                        Session["PS"] = "a";
+                        return RedirectToAction("Index", "Admin");
                     }
 
                 }
                 else
                 {
                     ViewBag.thongbao = "login unsuccessful";
-                    return View();
                 }
             }
             return View();
@@ -104,7 +134,7 @@ namespace Web.Controllers
                 tk.FullName = (string)Session["email"];
                 db.Users.Add(tk);
                 db.SaveChanges();
-                return RedirectToAction("Register2");
+                return RedirectToAction("Index","Home");
             }
             return View();
         }
@@ -166,6 +196,9 @@ namespace Web.Controllers
                     db.SaveChanges();
                 }
             }
+            Session["User"] = tk;
+            Session["TK"] = tk.Email;
+            Session["PS"] = "";
             return RedirectToAction("Index", "Home");
         }
 
@@ -191,6 +224,7 @@ namespace Web.Controllers
    
         public ActionResult DangXuat()
         {
+            Session["TK"] = null;
             Session["User"] = null;
             return RedirectToAction("Index","Home");
 
