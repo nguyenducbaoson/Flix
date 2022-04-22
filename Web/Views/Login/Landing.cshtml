@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/Landing.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <title>Flix</title>
+</head>
+<body>
+    <header class="showcase">
+        <!-- Showcase top -->
+        <div class="showcase-top">
+            <a href="@Url.Action("Index","Home")" class="logo" style="width: 120px; position: absolute; top: 50%; left: 50%; /* Transform to center */ transform: translate(-50%, -50%); ">
+                <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>x
+            </a>
+            <a href="@Url.Action("SignIn")" class="btn btn-rounded">Sign In</a>
+        </div>
+        <!-- Showcase content -->
+        <div class="showcase-content">
+            <h1>See what's next.</h1>
+            <p>Watch anywhere. Cancel at anytime.</p>
+            <a href="@Url.Action("Login","Login")" class="btn btn-xl">
+                Create a free account <i class="fas fa-chevron-right btn-icon"></i>
+            </a>
+        </div>
+    </header>
+</body>
+</html>

@@ -1,0 +1,119 @@
+﻿@using Web.Models
+@{
+    var a = ViewBag.Basic;
+    var b = ViewBag.Premium;
+    var c = ViewBag.Vip;
+}
+<head>
+    <link href="~/css/Login.css" rel="stylesheet" />
+</head>
+<div class="section">
+    <div class="container">
+        <div class="pricing">
+            <div class="pricing-header">
+                Fl<span class="main-color">i</span>x pricing
+            </div>
+            <div class="pricing-list">
+                <div class="row">
+                    <div class="col-4 col-md-12 col-sm-12" style=" padding: 0 15px;">
+                        <div class="pricing-box">
+                            <div class="pricing-box-header">
+                                <div class="pricing-name">
+                                    @a.NamePrice
+                                </div>
+                                <div class="pricing-price">
+                                    $@a.Cost <span>/month</span>
+                                </div>
+                            </div>
+                            <div class="pricing-box-content">
+                                <p>Originals</p>
+                                <p>Swich plans anytime</p>
+                                <p><del>65+ top Live</del></p>
+                                <p><del>TV Channels</del></p>
+                            </div>
+                            <div class="pricing-box-action">
+                                @if (Session["User"] != null)
+                                {
+                                    <a href="@Url.Action("ChoosePrice","Pay",new {@IDPrice = a.IDPrice,user =Session["TK"] })" class="btn btn-hover">
+                                        <span>Register now</span>
+                                    </a>
+                                }
+                                @if (Session["User"] == null)
+                                {
+                                    <a id="demo" class="btn btn-hover">
+                                        <span>Register now</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-12 col-sm-12" style=" padding: 0 15px;">
+                        <div class="pricing-box hightlight">
+                            <div class="pricing-box-header">
+                                <div class="pricing-name">
+                                    @b.NamePrice
+                                </div>
+                                <div class="pricing-price">
+                                    $@b.Cost <span>/month</span>
+                                </div>
+                            </div>
+                            <div class="pricing-box-content">
+                                <p>Originals</p>
+                                <p>Swich plans anytime</p>
+                                <p><del>65+ top Live</del></p>
+                                <p><del>TV Channels</del></p>
+                            </div>
+                            <div class="pricing-box-action">
+                                @if (Session["User"] != null)
+                                {
+                                    <a href="@Url.Action("ChoosePrice","Pay",new {@IDPrice = b.IDPrice,user =Session["TK"] })"class="btn btn-hover">
+                                        <span>Register now</span>
+                                    </a>
+                                }
+                                @if (Session["User"] == null)
+                                {
+                                    <a id="demo1" class="btn btn-hover">
+                                        <span>Register now</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-12 col-sm-12" style=" padding: 0 15px;">
+                        <div class="pricing-box">
+                            <div class="pricing-box-header">
+                                <div class="pricing-name">
+                                    @c.NamePrice
+                                </div>
+                                <div class="pricing-price">
+                                    $@c.Cost <span>/month</span>
+                                </div>
+                            </div>
+                            <div class="pricing-box-content">
+                                <p>Originals</p>
+                                <p>Swich plans anytime</p>
+                                <p><del>65+ top Live</del></p>
+                                <p><del>TV Channels</del></p>
+                            </div>
+                            <div class="pricing-box-action">
+                                @if (Session["User"] != null)
+                                {
+                                    <a href="@Url.Action("ChoosePrice","Pay",new {@IDPrice = c.IDPrice,user =Session["TK"] })" class="btn btn-hover">
+                                        <span>Register now</span>
+                                    </a>
+                                }
+                                @if (Session["User"] == null)
+                                {
+                                    <a id="demo2" class="btn btn-hover">
+                                        <span>Register now</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("Load", "Pay")

@@ -14,7 +14,12 @@ namespace Web.Models
     
     public partial class User
     {
-        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string FullName { get; set; }
         public string Password { get; set; }
+        public bool Permission { get; set; }
+        public Nullable<System.Guid> IDPay { get; set; }
+    
+        public virtual Pay Pay { get; set; }
     }
 }

@@ -1,0 +1,42 @@
+﻿@using Web.Models;
+@model List<Movie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="padding:0 0 0 40px">@ViewBag.lst</h2>
+
+<div class="row" style="flex-direction:row;padding:0 0 0 40px">
+    @foreach (var item in Model)
+    {
+        <div style="margin-top:15px; margin-right: 15px;width:350px">
+            <a href="@Url.Action("DetailMovie", "Detail", new { @MovieID = item.MovieID })" class="movie-item">
+                <img src="@Url.Content("~/Images/Index/" + item.Image)" alt="">
+                <div class="movie-item-content">
+                    <div class="movie-item-title">
+                        @item.Name
+                    </div>
+                    <div class="movie-infos">
+                        <div class="movie-info">
+                            <i class="bx bxs-star"></i>
+                            <span>@item.Rate</span>
+                        </div>
+                        <div class="movie-info">
+                            <i class="bx bxs-time"></i>
+                            <span>@item.Time mins</span>
+                        </div>
+                        <div class="movie-info">
+                            <span>HD</span>
+                        </div>
+                        <div class="movie-info">
+                            <span>16+</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+

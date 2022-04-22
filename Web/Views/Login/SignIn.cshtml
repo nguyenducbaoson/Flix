@@ -5,18 +5,18 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css">
-    <title>Netflix - Watch TV Shows Online, Watch Movies Online</title>
+    @*<link rel="stylesheet" href="style.css">
+    <title>Flix</title>
+    <link rel="stylesheet" href="~/css/grid.css">
+    <link rel="stylesheet" href="~/css/app.css">*@
 </head>
 <body>
     <header class="showcase">
-
-
-        <div class="logo">
-            <img src="https://i.ibb.co/r5krrdz/logo.png">
-        </div>
-
+            @*<a href="#" class="logo">
+                <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span class="main-color">i</span>x
+            </a>*@
         <div class="showcase-content">
+       
             <div class="formm">
                 @using (Html.BeginForm("SignIn","Login"))
                 {
@@ -24,7 +24,10 @@
                         <h1>Sign In</h1>
                         <div class="info">
                             <input class="email" @*type="email"*@ placeholder="Email or phone number" name="taikhoan"> <br>
+                            <p style="text-align: center;color:red"> @ViewData["Error"]</p>
                             <input class="email" type="password" placeholder="Password" name="matkhau">
+                            <p style="text-align: center;color:red"> @ViewData["Error2"]</p>
+                            <p style="text-align: center;color:red">  @ViewBag.thongbao</p>
                         </div>
                         <div class="btn">
                             <button class="btn-primary" type="submit">Sign In</button>
@@ -37,19 +40,17 @@
                             <a href="https://www.netflix.com/dz-en/LoginHelp">Need Help ?</a>
                         </div>
                     @*</form>*@
-                }
+             }
                 </div>
-
-
             <div class="fcbk">
-                <a href="https://facebook.com">
+                <a href="LoginFacebook">
                     <img src="https://i.ibb.co/LrVMXNR/social-fb.png" alt="Facebook">
                 </a>
                 <p>Login with Facebook</p>
             </div>
             <div class="signup">
                 <p>New to Netflix ?</p>
-                <a href="https://www.netflix.com/dz-en/">Sign up now</a>
+                <a href="@Url.Action("Landing","Login")">Sign up now</a>
             </div>
             <div class="more">
                 <p>
@@ -59,8 +60,6 @@
 
 
         </div>
-
-
         <footer>
 
             <div class="ftr-content">

@@ -1,7 +1,7 @@
 ﻿@using Web.Models
 @model List<Movie>
 @foreach(var item in Model)
-            {
+            {  
                 <div class="owl-item active" style="width: 1305px;">
     <div class="hero-slide-item">
         <img src="@Url.Content("~/Images/Index/"+item.Banner)" alt="">
@@ -28,10 +28,10 @@
                     </div>
                 </div>
                 <div class="item-content-description top-down delay-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
+                    @item.Description
                 </div>
                 <div class="item-action top-down delay-6">
-                    <a href="#" class="btn btn-hover">
+                    <a href="@Url.Action("DetailMovie","Detail",new { @MovieID = item.MovieID})" class="btn btn-hover">
                         <i class="bx bxs-right-arrow"></i>
                         <span>Watch now</span>
                     </a>
@@ -40,4 +40,4 @@
         </div>
     </div>
 </div>
-            }
+}
