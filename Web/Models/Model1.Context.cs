@@ -33,5 +33,6 @@ namespace Web.Models
         public virtual DbSet<Pay> Pays { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

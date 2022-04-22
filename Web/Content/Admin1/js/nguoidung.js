@@ -33,7 +33,11 @@ function formsuanguoidung(email) {
             $('#but').click(function () {
                 $.ajax({
                     type: 'PUT',
-                    url: 'https://localhost:44301/api/NguoiDung/update?email=' + data.Email + '&fullname=' + $('#ten').val().toString() + '&pass=' + $('#pass').val().toString(),
+                    url: 'https://localhost:44301/api/NguoiDung/update?email='+ email,
+                    data:{
+                    fullname: $('#ten').val().toString(),
+                    password: $('#pass').val().toString(),
+                },
                     dataType: 'json',
                     success: function (data) {
                         if (data == false)

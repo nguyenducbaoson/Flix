@@ -12,59 +12,46 @@ namespace Web.Controllers.API
     public class NguoiDungController : ApiController
     {
         Movie12Entities db = new Movie12Entities();
+
         [HttpGet]
         public List<User> GetUser()
         {
             var u = db.Users.Where(n => n.Permission == false).ToList();
             var lstuser = new List<User>();
-            foreach(var item in u)
+            foreach (var item in u)
             {
                 lstuser.Add(new User()
                 {
                     Email = item.Email,
-                    FullName=item.FullName,
-                    Password=item.Password
+                    FullName = item.FullName,
+                    Password = item.Password
                 });
-                
+
             }
             return lstuser;
         }
-        [HttpGet]
-        public User GetUserById(String email)
-        {
-            var item = db.Users.SingleOrDefault(n => n.Permission == false && n.Email==email);
-            var  user=new User()
-                {
-                    Email = item.Email,
-                    FullName = item.FullName,
-                    Password = item.Password
-                };
-
-            
-            return user;
-        }
-        [HttpPost]
-        public JsonResult<bool> insert(UserModel userModel)
+        //[HttpPost]
+        //public JsonResult<bool> insert(UserModel userModel)
+        //{
+        //    var item = db.Users.SingleOrDefault(n => n.Email == userModel.email);
+        //    if(item == null)
+        //    {
+        //        User u = new User() {Email=userModel.email,FullName=userModel.fullname,Password=userModel.password,Permission=false };
+        //        db.Users.Add(u);
+        //        db.SaveChanges();
+        //        return Json(true);
+        //    }
+        //    return Json(false);
+        //}
+        [HttpPut]
+        public bool update(UserModel userModel)
         {
             var item = db.Users.SingleOrDefault(n => n.Email == userModel.email);
-            if(item == null)
-            {
-                User u = new User() {Email=userModel.email,FullName=userModel.fullname,Password=userModel.password,Permission=false };
-                db.Users.Add(u);
-                db.SaveChanges();
-                return Json(true);
-            }
-            return Json(false);
-        }
-        [HttpPut]
-        public bool update(string email, string fullname, string pass)
-        {
-            var item = db.Users.SingleOrDefault(n => n.Email == email);
             if (item != null)
             {
-                item.Email = email;
-                item.FullName = fullname;
-                item.Password = pass;                
+                item.Email = userModel.email;
+                item.FullName = userModel.fullname;
+                item.Password = userModel.password;                
                 db.SaveChanges();
                 return true;
             }

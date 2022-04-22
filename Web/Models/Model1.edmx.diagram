@@ -15,6 +15,9 @@
         <EntityTypeShape EntityType="Movie12Model.User" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="Movie12Model.FK_Pay_Price" ManuallyRouted="false" />
         <AssociationConnector Association="Movie12Model.FK_User_Pay" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Movie12Model.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" />
+        <AssociationConnector Association="Movie12Model.FK_Movie_Category" />
+        <AssociationConnector Association="Movie12Model.Cast_Movie" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

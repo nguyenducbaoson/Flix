@@ -1,7 +1,7 @@
 ﻿@using Web.Models
 @model List<Movie>
 @foreach(var item in Model)
-            {
+            {  
                 <div class="owl-item active" style="width: 1305px;">
     <div class="hero-slide-item">
         <img src="@Url.Content("~/Images/Index/"+item.Banner)" alt="">
@@ -40,4 +40,4 @@
         </div>
     </div>
 </div>
-            }
+}

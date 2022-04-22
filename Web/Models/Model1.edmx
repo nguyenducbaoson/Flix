@@ -4,65 +4,73 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Movie12Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="Movie12Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
         <EntityType Name="Cast">
           <Key>
             <PropertyRef Name="CastID" />
           </Key>
-          <Property Name="CastID" Type="char" MaxLength="25" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CastID" Nullable="false" MaxLength="25" Type="char" />
+          <Property Name="FullName" MaxLength="50" Type="nvarchar" />
           <Property Name="Age" Type="int" />
-          <Property Name="Images" Type="nvarchar" MaxLength="50" />
+          <Property Name="Images" MaxLength="50" Type="nvarchar" />
           <Property Name="About" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Cast-Movie">
+          <Key>
+            <PropertyRef Name="CastID" />
+            <PropertyRef Name="MovieID" />
+          </Key>
+          <Property Name="CastID" Nullable="false" MaxLength="25" Type="char" />
+          <Property Name="MovieID" Nullable="false" MaxLength="25" Type="char" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="NameCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryID" Nullable="false" Type="int" />
+          <Property Name="NameCategory" MaxLength="50" Type="nvarchar" />
           <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" MaxLength="50" Type="varchar" />
           <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
-          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="250" />
-          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="ModifiedBy" MaxLength="50" Type="varchar" />
+          <Property Name="MetaKeywords" MaxLength="250" Type="nvarchar" />
+          <Property Name="Status" Nullable="false" Type="bit" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="CountryID" />
           </Key>
-          <Property Name="CountryID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="CountryID" Nullable="false" Type="int" />
+          <Property Name="Name" MaxLength="10" Type="nchar" />
           <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Status" Nullable="false" Type="bit" />
         </EntityType>
         <EntityType Name="Movie">
           <Key>
             <PropertyRef Name="MovieID" />
           </Key>
-          <Property Name="MovieID" Type="char" MaxLength="25" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MovieID" Nullable="false" MaxLength="25" Type="char" />
+          <Property Name="Name" Nullable="false" MaxLength="250" Type="nvarchar" />
+          <Property Name="Image" Nullable="false" Type="nvarchar(max)" />
           <Property Name="MoreImages" Type="xml" />
-          <Property Name="Actor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Actor" MaxLength="50" Type="nvarchar" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="Directors" Type="nvarchar" MaxLength="50" />
+          <Property Name="Directors" MaxLength="50" Type="nvarchar" />
           <Property Name="Time" Type="text" />
           <Property Name="Year" Type="int" />
-          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" MaxLength="50" Type="nvarchar" />
           <Property Name="MovieLink" Type="nvarchar(max)" />
           <Property Name="TrailerLink" Type="nvarchar(max)" />
-          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Nullable="false" Type="int" />
           <Property Name="Rate" Type="float" />
-          <Property Name="Viewed" Type="int" Nullable="false" />
+          <Property Name="Viewed" Nullable="false" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
-          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="250" />
-          <Property Name="MetaDescriptions" Type="nchar" MaxLength="250" />
-          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="ModifiedBy" MaxLength="50" Type="varchar" />
+          <Property Name="MetaKeywords" MaxLength="250" Type="nvarchar" />
+          <Property Name="MetaDescriptions" MaxLength="250" Type="nchar" />
+          <Property Name="Status" Nullable="false" Type="bit" />
           <Property Name="CountryID" Type="int" />
           <Property Name="Banner" Type="nvarchar(max)" />
           <Property Name="Isbanner" Type="int" />
@@ -74,15 +82,15 @@
             <PropertyRef Name="Email" />
             <PropertyRef Name="MovieID" />
           </Key>
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MovieID" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="Email" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="MovieID" Nullable="false" MaxLength="25" Type="char" />
         </EntityType>
         <EntityType Name="Pay">
           <Key>
             <PropertyRef Name="IDPay" />
           </Key>
-          <Property Name="IDPay" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDPay" Nullable="false" Type="uniqueidentifier" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
           <Property Name="IDPrice" Type="int" />
           <Property Name="Datedinscription" Type="datetime" />
           <Property Name="Datedexpiration" Type="datetime" />
@@ -91,24 +99,70 @@
           <Key>
             <PropertyRef Name="IDPrice" />
           </Key>
-          <Property Name="IDPrice" Type="int" Nullable="false" />
-          <Property Name="NamePrice" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Cost" Type="bigint" Nullable="false" />
+          <Property Name="IDPrice" Nullable="false" Type="int" />
+          <Property Name="NamePrice" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="Cost" Nullable="false" Type="bigint" />
           <Property Name="About" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="principal_id" Nullable="false" Type="int" />
+          <Property Name="diagram_id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Email" />
           </Key>
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="Permission" Type="bit" Nullable="false" />
+          <Property Name="Email" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="FullName" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="Password" Nullable="false" MaxLength="20" Type="nchar" />
+          <Property Name="Permission" Nullable="false" Type="bit" />
           <Property Name="IDPay" Type="uniqueidentifier" />
         </EntityType>
+        <Association Name="FK_Cast-Movie_Cast">
+          <End Type="Self.Cast" Multiplicity="1" Role="Cast" />
+          <End Type="Self.Cast-Movie" Multiplicity="*" Role="Cast-Movie" />
+          <ReferentialConstraint>
+            <Principal Role="Cast">
+              <PropertyRef Name="CastID" />
+            </Principal>
+            <Dependent Role="Cast-Movie">
+              <PropertyRef Name="CastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cast-Movie_Movie">
+          <End Type="Self.Movie" Multiplicity="1" Role="Movie" />
+          <End Type="Self.Cast-Movie" Multiplicity="*" Role="Cast-Movie" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieID" />
+            </Principal>
+            <Dependent Role="Cast-Movie">
+              <PropertyRef Name="MovieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Category">
+          <End Type="Self.Category" Multiplicity="1" Role="Category" />
+          <End Type="Self.Movie" Multiplicity="*" Role="Movie" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pay_Price">
-          <End Role="Price" Type="Self.Price" Multiplicity="0..1" />
-          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <End Type="Self.Price" Multiplicity="0..1" Role="Price" />
+          <End Type="Self.Pay" Multiplicity="*" Role="Pay" />
           <ReferentialConstraint>
             <Principal Role="Price">
               <PropertyRef Name="IDPrice" />
@@ -119,8 +173,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Pay">
-          <End Role="Pay" Type="Self.Pay" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="Self.Pay" Multiplicity="0..1" Role="Pay" />
+          <End Type="Self.User" Multiplicity="*" Role="User" />
           <ReferentialConstraint>
             <Principal Role="Pay">
               <PropertyRef Name="IDPay" />
@@ -132,24 +186,37 @@
         </Association>
         <EntityContainer Name="Movie12ModelStoreContainer">
           <EntitySet Name="Cast" EntityType="Self.Cast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cast-Movie" EntityType="Self.Cast-Movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MyList" EntityType="Self.MyList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pay" EntityType="Self.Pay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cast-Movie_Cast" Association="Self.FK_Cast-Movie_Cast">
+            <End EntitySet="Cast" Role="Cast" />
+            <End EntitySet="Cast-Movie" Role="Cast-Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cast-Movie_Movie" Association="Self.FK_Cast-Movie_Movie">
+            <End EntitySet="Movie" Role="Movie" />
+            <End EntitySet="Cast-Movie" Role="Cast-Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Category" Association="Self.FK_Movie_Category">
+            <End EntitySet="Category" Role="Category" />
+            <End EntitySet="Movie" Role="Movie" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pay_Price" Association="Self.FK_Pay_Price">
-            <End Role="Price" EntitySet="Price" />
-            <End Role="Pay" EntitySet="Pay" />
+            <End EntitySet="Price" Role="Price" />
+            <End EntitySet="Pay" Role="Pay" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Pay" Association="Self.FK_User_Pay">
-            <End Role="Pay" EntitySet="Pay" />
-            <End Role="User" EntitySet="User" />
+            <End EntitySet="Pay" Role="Pay" />
+            <End EntitySet="User" Role="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Movie12Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -162,6 +229,7 @@
           <Property Name="Age" Type="Int32" />
           <Property Name="Images" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Movies" Relationship="Movie12Model.Cast_Movie" FromRole="Cast" ToRole="Movie" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -175,6 +243,7 @@
           <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MetaKeywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Movies" Relationship="Movie12Model.FK_Movie_Category" FromRole="Category" ToRole="Movie" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -216,6 +285,8 @@
           <Property Name="Isbanner" Type="Int32" />
           <Property Name="Active" Type="Int32" />
           <Property Name="IDPrice" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Movie12Model.FK_Movie_Category" FromRole="Movie" ToRole="Category" />
+          <NavigationProperty Name="Casts" Relationship="Movie12Model.Cast_Movie" FromRole="Movie" ToRole="Cast" />
         </EntityType>
         <EntityType Name="MyList">
           <Key>
@@ -299,7 +370,42 @@
             <End Role="Pay" EntitySet="Pays" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="Movie12Model.sysdiagram" />
+          <AssociationSet Name="FK_Movie_Category" Association="Movie12Model.FK_Movie_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="Cast_Movie" Association="Movie12Model.Cast_Movie">
+            <End Role="Cast" EntitySet="Casts" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Movie_Category">
+          <End Type="Movie12Model.Category" Role="Category" Multiplicity="1" />
+          <End Type="Movie12Model.Movie" Role="Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cast_Movie">
+          <End Type="Movie12Model.Cast" Role="Cast" Multiplicity="*" />
+          <End Type="Movie12Model.Movie" Role="Movie" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -414,6 +520,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Movie12Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Cast_Movie" TypeName="Movie12Model.Cast_Movie" StoreEntitySet="Cast-Movie">
+            <EndProperty Name="Movie">
+              <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+            </EndProperty>
+            <EndProperty Name="Cast">
+              <ScalarProperty Name="CastID" ColumnName="CastID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
