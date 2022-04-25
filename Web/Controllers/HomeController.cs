@@ -9,7 +9,7 @@ using Web.Models;
 namespace WebXemPhim.Controllers
 {
     public class HomeController : Controller
-    {
+    {//
         Movie5Entities1 db = new Movie5Entities1();
         public ViewResult Index()
         {
