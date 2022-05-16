@@ -12,9 +12,6 @@ namespace Web.Controllers.API
     public class CountryApiController : ApiController
     {
         Movie12Entities db = new Movie12Entities();
-
-
-        
         [HttpGet]
         public List<Country> GetCountry()
         {
@@ -77,7 +74,7 @@ namespace Web.Controllers.API
             {
                 return false;
             }
-            
+
             country.CountryID = id;
             country.Name = name;
             db.SaveChanges();
@@ -92,7 +89,7 @@ namespace Web.Controllers.API
                 return false;
             }
             var m = db.Movies.Where(n => n.CountryID == id).ToList();
-            if (m.Count==0)
+            if (m.Count == 0)
             {
                 db.Countries.Remove(country);
                 db.SaveChanges();

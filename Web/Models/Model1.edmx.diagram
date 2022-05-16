@@ -18,6 +18,10 @@
         <EntityTypeShape EntityType="Movie12Model.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" />
         <AssociationConnector Association="Movie12Model.FK_Movie_Category" />
         <AssociationConnector Association="Movie12Model.Cast_Movie" />
+        <EntityTypeShape EntityType="Movie12Model.CTTapPhim" Width="1.5" PointX="11.625" PointY="4.375" />
+        <EntityTypeShape EntityType="Movie12Model.PhimBo" Width="1.5" PointX="9.375" PointY="4" />
+        <AssociationConnector Association="Movie12Model.FK_CTTapPhim_PhimBo" />
+        <AssociationConnector Association="Movie12Model.CastMovie" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -61,15 +61,14 @@ namespace Web.Controllers
             else
             {
                 User user = db.Users.SingleOrDefault(n => n.Email == tk && n.Password == mk);
-                Pay pay = db.Pays.Where(n => n.IDPay == user.IDPay).SingleOrDefault();
                 if (user != null)
                 {
+                    Pay pay = db.Pays.Where(n => n.IDPay == user.IDPay).SingleOrDefault();
                     if (user.Permission == false)
                     {
                         Session["User"] = user;
                         Session["TK"] = user.Email;
                         Session["Pay"] = user.IDPay;
-                        Session["goi"] = pay.IDPrice;
                         if(string.IsNullOrEmpty(user.IDPay.ToString()))
                         {
                             return RedirectToAction("Index", "Home");
@@ -81,7 +80,6 @@ namespace Web.Controllers
                             {
                                 user.IDPay = null;
                                 Session["Pay"] = user.IDPay;
-                                Session["goi"] = pay.IDPrice;
                                 db.SaveChanges();
                                 return RedirectToAction("Index", "Home");
                             }
@@ -89,7 +87,6 @@ namespace Web.Controllers
                             {
                                 Session["User"] = user;
                                 Session["TK"] = user.Email;
-                                Session["goi"] = pay.IDPrice;
                                 Session["PS"] = "";
                                 return RedirectToAction("Index", "Home");
                             }
@@ -97,7 +94,6 @@ namespace Web.Controllers
                     }
                     else
                     {
-                        Session["goi"] = pay.IDPrice;
                         Session["User"] = user;
                         Session["TK"] = user.Email;
                         Session["PS"] = "a";

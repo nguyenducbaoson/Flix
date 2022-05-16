@@ -16,7 +16,8 @@ namespace Web.Controllers.API
         [HttpGet]
         public List<User> GetUser()
         {
-            var u = db.Users.Where(n => n.Permission == false).ToList();
+
+            var u = db.Users.Where(n => n.Permission == false).Take(10).ToList();
             var lstuser = new List<User>();
             foreach (var item in u)
             {
@@ -30,19 +31,19 @@ namespace Web.Controllers.API
             }
             return lstuser;
         }
-        //[HttpPost]
-        //public JsonResult<bool> insert(UserModel userModel)
-        //{
-        //    var item = db.Users.SingleOrDefault(n => n.Email == userModel.email);
-        //    if(item == null)
-        //    {
-        //        User u = new User() {Email=userModel.email,FullName=userModel.fullname,Password=userModel.password,Permission=false };
-        //        db.Users.Add(u);
-        //        db.SaveChanges();
-        //        return Json(true);
-        //    }
-        //    return Json(false);
-        //}
+        [HttpPost]
+        public JsonResult<bool> insert(UserModel userModel)
+        {
+            var item = db.Users.SingleOrDefault(n => n.Email == userModel.email);
+            if (item == null)
+            {
+                User u = new User() { Email = userModel.email, FullName = userModel.fullname, Password = userModel.password, Permission = false };
+                db.Users.Add(u);
+                db.SaveChanges();
+                return Json(true);
+            }
+            return Json(false);
+        }
         [HttpPut]
         public bool update(UserModel userModel)
         {

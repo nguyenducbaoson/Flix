@@ -16,9 +16,9 @@ namespace Web.Controllers
         public List<Category> GetCategory()
         {
             var lstCategory = new List<Category>();
-            foreach(var item in db.Categories.ToList())
+            foreach (var item in db.Categories.ToList())
             {
-                lstCategory.Add(new Category() {CategoryID=item.CategoryID,NameCategory=item.NameCategory });
+                lstCategory.Add(new Category() { CategoryID = item.CategoryID, NameCategory = item.NameCategory });
             }
             return lstCategory;
         }
@@ -59,7 +59,7 @@ namespace Web.Controllers
             Category category = db.Categories.SingleOrDefault(n => n.CategoryID == categoryModel.id);
             if (category == null)
             {
-                Category c = new Category() { CategoryID = categoryModel.id, NameCategory = categoryModel.name ,CreatedDate=DateTime.Now,Status=true};
+                Category c = new Category() { CategoryID = categoryModel.id, NameCategory = categoryModel.name, CreatedDate = DateTime.Now, Status = true };
                 db.Categories.Add(c);
                 db.SaveChanges();
                 return Json(true);
@@ -89,14 +89,14 @@ namespace Web.Controllers
                 return false;
             }
             var m = db.Movies.Where(n => n.CategoryID == id).ToList();
-            if (m.Count==0)
+            if (m.Count == 0)
             {
                 db.Categories.Remove(category);
                 db.SaveChanges();
                 return true;
             }
             return false;
-            
+
         }
     }
 }
