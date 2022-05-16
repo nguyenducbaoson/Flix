@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Movie12Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Movie12Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cast">
           <Key>
             <PropertyRef Name="CastID" />
@@ -14,14 +14,6 @@
           <Property Name="Age" Type="int" />
           <Property Name="Images" Type="nvarchar" MaxLength="50" />
           <Property Name="About" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="CastMovie">
-          <Key>
-            <PropertyRef Name="CastID" />
-            <PropertyRef Name="MovieID" />
-          </Key>
-          <Property Name="CastID" Type="char" MaxLength="25" Nullable="false" />
-          <Property Name="MovieID" Type="char" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -50,9 +42,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="TapPhim" Type="nvarchar" MaxLength="50" />
+          <Property Name="TapPhim" Type="int" />
           <Property Name="ID2" Type="nchar" MaxLength="10" />
-          <Property Name="Link" Type="nchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Link" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Movie">
           <Key>
@@ -115,6 +108,7 @@
           <Property Name="Images" Type="nvarchar(max)" />
           <Property Name="Viewed" Type="int" />
           <Property Name="Country" Type="int" />
+          <Property Name="Trailer" Type="nvarchar(max)" />
           <Property Name="Rate" Type="int" />
         </EntityType>
         <EntityType Name="Price">
@@ -146,30 +140,6 @@
           <Property Name="Permission" Type="bit" Nullable="false" />
           <Property Name="IDPay" Type="uniqueidentifier" />
         </EntityType>
-        <Association Name="FK_Cast-Movie_Cast">
-          <End Role="Cast" Type="Self.Cast" Multiplicity="1" />
-          <End Role="CastMovie" Type="Self.CastMovie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cast">
-              <PropertyRef Name="CastID" />
-            </Principal>
-            <Dependent Role="CastMovie">
-              <PropertyRef Name="CastID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cast-Movie_Movie">
-          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
-          <End Role="CastMovie" Type="Self.CastMovie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Movie">
-              <PropertyRef Name="MovieID" />
-            </Principal>
-            <Dependent Role="CastMovie">
-              <PropertyRef Name="MovieID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CTTapPhim_PhimBo">
           <End Role="PhimBo" Type="Self.PhimBo" Multiplicity="0..1" />
           <End Role="CTTapPhim" Type="Self.CTTapPhim" Multiplicity="*" />
@@ -220,7 +190,6 @@
         </Association>
         <EntityContainer Name="Movie12ModelStoreContainer">
           <EntitySet Name="Cast" EntityType="Self.Cast" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CastMovie" EntityType="Self.CastMovie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTTapPhim" EntityType="Self.CTTapPhim" Schema="dbo" store:Type="Tables" />
@@ -231,14 +200,6 @@
           <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Cast-Movie_Cast" Association="Self.FK_Cast-Movie_Cast">
-            <End Role="Cast" EntitySet="Cast" />
-            <End Role="CastMovie" EntitySet="CastMovie" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cast-Movie_Movie" Association="Self.FK_Cast-Movie_Movie">
-            <End Role="Movie" EntitySet="Movie" />
-            <End Role="CastMovie" EntitySet="CastMovie" />
-          </AssociationSet>
           <AssociationSet Name="FK_CTTapPhim_PhimBo" Association="Self.FK_CTTapPhim_PhimBo">
             <End Role="PhimBo" EntitySet="PhimBo" />
             <End Role="CTTapPhim" EntitySet="CTTapPhim" />
@@ -256,7 +217,8 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Movie12Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -269,8 +231,6 @@
           <Property Name="Age" Type="Int32" />
           <Property Name="Images" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Movies" Relationship="Movie12Model.Cast_Movie" FromRole="Cast" ToRole="Movie" />
-          <NavigationProperty Name="Movies1" Relationship="Movie12Model.CastMovie" FromRole="Cast" ToRole="Movie" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -284,7 +244,7 @@
           <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MetaKeywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Movies" Relationship="Movie12Model.FK_Movie_Category" FromRole="Category" ToRole="Movie" />
+          <NavigationProperty Name="Movies" Relationship="Self.FK_Movie_Category" FromRole="Category" ToRole="Movie" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -294,6 +254,17 @@
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CTTapPhim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TapPhim" Type="Int32" />
+          <Property Name="ID2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhimBo" Relationship="Self.FK_CTTapPhim_PhimBo" FromRole="CTTapPhim" ToRole="PhimBo" />
         </EntityType>
         <EntityType Name="Movie">
           <Key>
@@ -326,9 +297,7 @@
           <Property Name="Isbanner" Type="Int32" />
           <Property Name="Active" Type="Int32" />
           <Property Name="IDPrice" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Movie12Model.FK_Movie_Category" FromRole="Movie" ToRole="Category" />
-          <NavigationProperty Name="Casts" Relationship="Movie12Model.Cast_Movie" FromRole="Movie" ToRole="Cast" />
-          <NavigationProperty Name="Casts1" Relationship="Movie12Model.CastMovie" FromRole="Movie" ToRole="Cast" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Movie_Category" FromRole="Movie" ToRole="Category" />
         </EntityType>
         <EntityType Name="MyList">
           <Key>
@@ -350,6 +319,21 @@
           <NavigationProperty Name="Price" Relationship="Self.FK_Pay_Price" FromRole="Pay" ToRole="Price" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_Pay" FromRole="Pay" ToRole="User" />
         </EntityType>
+        <EntityType Name="PhimBo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDCategory" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Viewed" Type="Int32" />
+          <Property Name="Country" Type="Int32" />
+          <Property Name="Trailer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Int32" />
+          <NavigationProperty Name="CTTapPhims" Relationship="Self.FK_CTTapPhim_PhimBo" FromRole="PhimBo" ToRole="CTTapPhim" />
+        </EntityType>
         <EntityType Name="Price">
           <Key>
             <PropertyRef Name="IDPrice" />
@@ -359,6 +343,16 @@
           <Property Name="Cost" Type="Int64" Nullable="false" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Pays" Relationship="Self.FK_Pay_Price" FromRole="Price" ToRole="Pay" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -371,6 +365,30 @@
           <Property Name="IDPay" Type="Guid" />
           <NavigationProperty Name="Pay" Relationship="Self.FK_User_Pay" FromRole="User" ToRole="Pay" />
         </EntityType>
+        <Association Name="FK_Movie_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTTapPhim_PhimBo">
+          <End Role="PhimBo" Type="Self.PhimBo" Multiplicity="0..1" />
+          <End Role="CTTapPhim" Type="Self.CTTapPhim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhimBo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CTTapPhim">
+              <PropertyRef Name="ID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pay_Price">
           <End Role="Price" Type="Self.Price" Multiplicity="0..1" />
           <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
@@ -399,11 +417,22 @@
           <EntitySet Name="Casts" EntityType="Self.Cast" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="CTTapPhims" EntityType="Self.CTTapPhim" />
           <EntitySet Name="Movies" EntityType="Self.Movie" />
           <EntitySet Name="MyLists" EntityType="Self.MyList" />
           <EntitySet Name="Pays" EntityType="Self.Pay" />
+          <EntitySet Name="PhimBoes" EntityType="Self.PhimBo" />
           <EntitySet Name="Prices" EntityType="Self.Price" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Movie_Category" Association="Self.FK_Movie_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTTapPhim_PhimBo" Association="Self.FK_CTTapPhim_PhimBo">
+            <End Role="PhimBo" EntitySet="PhimBoes" />
+            <End Role="CTTapPhim" EntitySet="CTTapPhims" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pay_Price" Association="Self.FK_Pay_Price">
             <End Role="Price" EntitySet="Prices" />
             <End Role="Pay" EntitySet="Pays" />
@@ -412,92 +441,7 @@
             <End Role="Pay" EntitySet="Pays" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="Movie12Model.sysdiagram" />
-          <AssociationSet Name="FK_Movie_Category" Association="Movie12Model.FK_Movie_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Movie" EntitySet="Movies" />
-          </AssociationSet>
-          <AssociationSet Name="Cast_Movie" Association="Movie12Model.Cast_Movie">
-            <End Role="Cast" EntitySet="Casts" />
-            <End Role="Movie" EntitySet="Movies" />
-          </AssociationSet>
-          <EntitySet Name="CTTapPhims" EntityType="Movie12Model.CTTapPhim" />
-          <EntitySet Name="PhimBoes" EntityType="Movie12Model.PhimBo" />
-          <AssociationSet Name="FK_CTTapPhim_PhimBo" Association="Movie12Model.FK_CTTapPhim_PhimBo">
-            <End Role="PhimBo" EntitySet="PhimBoes" />
-            <End Role="CTTapPhim" EntitySet="CTTapPhims" />
-          </AssociationSet>
-          <AssociationSet Name="CastMovie" Association="Movie12Model.CastMovie">
-            <End Role="Cast" EntitySet="Casts" />
-            <End Role="Movie" EntitySet="Movies" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Movie_Category">
-          <End Type="Movie12Model.Category" Role="Category" Multiplicity="1" />
-          <End Type="Movie12Model.Movie" Role="Movie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="Movie">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Cast_Movie">
-          <End Type="Movie12Model.Cast" Role="Cast" Multiplicity="*" />
-          <End Type="Movie12Model.Movie" Role="Movie" Multiplicity="*" />
-        </Association>
-        <EntityType Name="CTTapPhim">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="TapPhim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Link" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="PhimBo" Relationship="Movie12Model.FK_CTTapPhim_PhimBo" FromRole="CTTapPhim" ToRole="PhimBo" />
-        </EntityType>
-        <EntityType Name="PhimBo">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IDCategory" Type="Int32" />
-          <Property Name="Year" Type="Int32" />
-          <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Viewed" Type="Int32" />
-          <Property Name="Country" Type="Int32" />
-          <Property Name="Rate" Type="Int32" />
-          <NavigationProperty Name="CTTapPhims" Relationship="Movie12Model.FK_CTTapPhim_PhimBo" FromRole="PhimBo" ToRole="CTTapPhim" />
-        </EntityType>
-        <Association Name="FK_CTTapPhim_PhimBo">
-          <End Type="Movie12Model.PhimBo" Role="PhimBo" Multiplicity="0..1" />
-          <End Type="Movie12Model.CTTapPhim" Role="CTTapPhim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhimBo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CTTapPhim">
-              <PropertyRef Name="ID2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CastMovie">
-          <End Type="Movie12Model.Cast" Role="Cast" Multiplicity="*" />
-          <End Type="Movie12Model.Movie" Role="Movie" Multiplicity="*" />
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -536,6 +480,17 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTTapPhims">
+            <EntityTypeMapping TypeName="Movie12Model.CTTapPhim">
+              <MappingFragment StoreEntitySet="CTTapPhim">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TapPhim" ColumnName="TapPhim" />
+                <ScalarProperty Name="ID2" ColumnName="ID2" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -591,6 +546,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PhimBoes">
+            <EntityTypeMapping TypeName="Movie12Model.PhimBo">
+              <MappingFragment StoreEntitySet="PhimBo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IDCategory" ColumnName="IDCategory" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Viewed" ColumnName="Viewed" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Trailer" ColumnName="Trailer" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Prices">
             <EntityTypeMapping TypeName="Movie12Model.Price">
               <MappingFragment StoreEntitySet="Price">
@@ -598,6 +568,17 @@
                 <ScalarProperty Name="NamePrice" ColumnName="NamePrice" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="About" ColumnName="About" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Movie12Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -612,49 +593,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Movie12Model.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CTTapPhims">
-            <EntityTypeMapping TypeName="Movie12Model.CTTapPhim">
-              <MappingFragment StoreEntitySet="CTTapPhim">
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="ID2" ColumnName="ID2" />
-                <ScalarProperty Name="TapPhim" ColumnName="TapPhim" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PhimBoes">
-            <EntityTypeMapping TypeName="Movie12Model.PhimBo">
-              <MappingFragment StoreEntitySet="PhimBo">
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Viewed" ColumnName="Viewed" />
-                <ScalarProperty Name="Images" ColumnName="Images" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="IDCategory" ColumnName="IDCategory" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="CastMovie" TypeName="Movie12Model.CastMovie" StoreEntitySet="CastMovie">
-            <EndProperty Name="Movie">
-              <ScalarProperty Name="MovieID" ColumnName="MovieID" />
-            </EndProperty>
-            <EndProperty Name="Cast">
-              <ScalarProperty Name="CastID" ColumnName="CastID" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

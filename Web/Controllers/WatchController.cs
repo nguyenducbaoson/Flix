@@ -17,8 +17,6 @@ namespace Web.Controllers
                 movie.Viewed += 1;
                 db.SaveChanges();
                 return View(movie);
-            
-
         }
     }
 }

@@ -15,8 +15,9 @@ namespace Web.Models
     public partial class CTTapPhim
     {
         public string ID { get; set; }
-        public string TapPhim { get; set; }
+        public Nullable<int> TapPhim { get; set; }
         public string ID2 { get; set; }
+        public string Name { get; set; }
         public string Link { get; set; }
     
         public virtual PhimBo PhimBo { get; set; }

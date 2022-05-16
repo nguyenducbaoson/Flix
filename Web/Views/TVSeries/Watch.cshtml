@@ -1,0 +1,89 @@
+﻿
+@using Web.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<CTTapPhim>
+@{
+    ViewBag.Title = "Watch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var a = ViewBag.PhimBo;
+}
+
+
+<link href="~/css/Detail/css.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link href="~/css/Detail/font-awesome.min.css" rel="stylesheet" />
+<div class="container clear_navar" style="padding-top: 60px;">
+    <div class="section-header">
+        @foreach (var item in Model)
+            {
+            @item.PhimBo.Name <div>&nbsp Episode @item.TapPhim: &nbsp </div> @item.Name<div>  &nbsp(Season 1)</div>
+            }
+        </div>
+    <div id="instructions" style=" text-align: center;">
+        @*<iframe src="https://stream1.linhminaz.com/v/MMsp8iIVyHPz7WU" frameborder="0" allowFullScreen="true" width="640" height="320"></iframe>*@
+        @foreach (var item in ViewData["p"] as List<CTTapPhim>)
+        {
+            <iframe src="@item.Link" frameborder="0" allowFullScreen="true" width="1280" height="640"></iframe>
+
+        }
+        @*<video id="my_video_1" class="video-js vjs-default-skin" width="900px" height="267px"
+                   controls preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
+                   data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+                <source src="https://stream1.linhminaz.com/v/3aOilI3oLvmGO5j" type='video/mp4' />
+                <source src="https://stream1.linhminaz.com/v/3aOilI3oLvmGO5j" type='video/webm' />
+            </video>*@
+    </div>
+    <div>
+        <div class="col-xl-10" style="height: auto; margin: auto;width:1000px">
+            <div class="metax1">
+                <div class="bar_info">
+                    <ul class="list_bar">
+                        <li>
+                            <a class="bar_ani4u" style="cursor: pointer" onclick="togglecomments('an_hien_baoloi');">
+                                <i class="fas fa-exclamation-circle material-icons"></i>
+                                <br>
+                                Error Report
+                            </a>
+                        </li>
+                        <li>
+                            <a id="switch" style="cursor: pointer" href="#">
+                                <i class="fas fa-backward material-icons"></i>
+                                <br>
+                                Previous episode
+                            </a>
+                        </li>
+                        <li>
+                            <a class="bar_ani4u" style="cursor: pointer" onclick="window.location.reload()">
+                                <i class="fas fa-sync-alt material-icons"></i>
+                                <br>
+                                Reload
+                            </a>
+                        </li>
+                        <li>
+                            <a style="cursor: pointer" id="switch" href="#">
+                                <i class="fas fa-forward material-icons"></i>
+                                <br>
+                                Next episode
+                            </a>
+                        </li>
+
+                        <a class="bar_ani4u" style="cursor: pointer"></a>
+                    </ul>
+                    <div id="aniclass" style="background: #000;"></div>
+                </div>
+                <div id="episodelist" style="max-height: 200px; overflow: auto; overflow-x: hidden; margin: 10px; padding-bottom: 10px">
+
+                    <div>
+                        @Html.PagedListPager(Model, page => Url.Action("Watch", new { @MovieID = a.ID ,Tap = page }))
+                    </div>
+                    <link href="~/Content/tap.css" rel="stylesheet" />
+                </div>
+                <div>
+                    <script src="https://connect.facebook.net/vi_VN/sdk.js?hash=2edf7a68d19058082e2b9771afd2aa96" async="" crossorigin="anonymous"></script>
+                </div>
+            </div>
+</div>
+@Html.Action("Category2", "Home")
+@Html.Action("Category1", "Home")
+
+

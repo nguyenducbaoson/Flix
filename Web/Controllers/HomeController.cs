@@ -69,7 +69,7 @@ namespace WebXemPhim.Controllers
         }
         public PartialViewResult TvSeries()
         {
-            List<PhimBo> lstMovie = db.PhimBoes.(n => n.Name).ToList();
+            List<PhimBo> lstMovie = db.PhimBoes.OrderBy(n => n.Name).ToList();
             ViewBag.lstMovie = db.PhimBoes.ToList();
             return PartialView(lstMovie);
         }

@@ -27,6 +27,7 @@ namespace Web.Models
         public string Images { get; set; }
         public Nullable<int> Viewed { get; set; }
         public Nullable<int> Country { get; set; }
+        public string Trailer { get; set; }
         public Nullable<int> Rate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

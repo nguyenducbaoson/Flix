@@ -28,13 +28,13 @@ namespace Web.Models
         public virtual DbSet<Cast> Casts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<CTTapPhim> CTTapPhims { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
         public virtual DbSet<MyList> MyLists { get; set; }
         public virtual DbSet<Pay> Pays { get; set; }
-        public virtual DbSet<Price> Prices { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<CTTapPhim> CTTapPhims { get; set; }
         public virtual DbSet<PhimBo> PhimBoes { get; set; }
+        public virtual DbSet<Price> Prices { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -381,6 +381,7 @@
     <Compile Include="Controllers\MyListController.cs" />
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\TVSeriesController.cs" />
     <Compile Include="Controllers\WatchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -485,6 +486,7 @@
     <Content Include="Content\Loader.css" />
     <Content Include="Content\Loader.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\tap.css" />
     <Content Include="css\app.css" />
     <Content Include="css\app.js" />
     <Content Include="css\Detail\bootstrap.min.css" />
@@ -535,6 +537,7 @@
     <Content Include="Images\Index\insidious.jpg" />
     <Content Include="Images\Index\invisible.jpg" />
     <Content Include="Images\Index\it.jpg" />
+    <Content Include="Images\Index\loki.jpg" />
     <Content Include="Images\Index\love-roise.jpg" />
     <Content Include="Images\Index\lucky-one.jpg" />
     <Content Include="Images\Index\mandalorian.jpg" />
@@ -658,6 +661,9 @@
     <Content Include="Views\Home\GetMovieByCountry.cshtml" />
     <Content Include="Views\MyList\Index.cshtml" />
     <Content Include="Views\Home\TvSeries.cshtml" />
+    <Content Include="Views\TVSeries\DetailTVSeries.cshtml" />
+    <Content Include="Views\Watch\WatchTVSeries.cshtml" />
+    <Content Include="Views\TVSeries\Watch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

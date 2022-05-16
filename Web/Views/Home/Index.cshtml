@@ -98,6 +98,7 @@
 </div>
 @Html.Action("Category2", "Home")
 @Html.Action("Category1", "Home")
+@Html.Action("TvSeries", "Home")
 @if ((Session["Pay"] == null && Session["User"] != null))
 {
     <p>
@@ -108,6 +109,7 @@ else if (Session["User"] == null)
 {
     @Html.Action("Pay", "Pay")
 }
-else { 
+else
+{
     <p></p>
 }

@@ -89,12 +89,12 @@ namespace Web.Controllers.API
                 return false;
             }
             var m = db.Movies.Where(n => n.CountryID == id).ToList();
-            if (m.Count == 0)
-            {
-                db.Countries.Remove(country);
-                db.SaveChanges();
-                return true;
-            }
+            //if (m.Count == 0)
+            //{
+            //    db.Countries.Remove(country);
+            //    db.SaveChanges();
+            //    return true;
+            //}
             return false;
         }
 
