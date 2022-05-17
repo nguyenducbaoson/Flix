@@ -1,0 +1,152 @@
+﻿@using Web.Models;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Flix
+    </title>
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- OWL CAROUSEL -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+    <!-- BOX ICONS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- APP CSS -->
+    <link href="~/css/app.css" rel="stylesheet" />
+    <link href="~/css/grid.css" rel="stylesheet" />
+    <link href="~/Content/Loader.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>
+<style>
+    .searchBox {
+        background: #2f3640;
+        border-radius: 40px;
+    }
+
+        .searchBox:hover > .searchInput {
+            width: 240px;
+            padding: 0 6px;
+        }
+
+        .searchBox:hover > .searchButton {
+            background: white;
+            color: #2f3640;
+        }
+
+    .searchButton {
+        color: white;
+        float: right;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #2f3640;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+    }
+
+    .searchInput {
+        border: none;
+        background: none;
+        outline: none;
+        float: left;
+        padding: 0;
+        color: white;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 0px;
+    }
+
+    @@media screen and (max-width: 620px) {
+        .searchBox:hover > .searchInput {
+            width: 150px;
+            padding: 0 6px;
+        }
+    }
+</style>
+<script src="~/Content/Loader.js"></script>
+
+<script>
+
+    $(document)
+        .ajaxStart(function () {
+            $('#AjaxLoader').show();
+        })
+        .ajaxStop(function () {
+            $('#AjaxLoader').hide();
+        })
+    $(document).ready(function () {
+
+        if ($('#k').text() == "Log Out") {
+            $('#mylist').click(function () {
+                alert("Bạn Đã Đăng Nhập");
+            });
+        }
+        else {
+            $('#mylist').click(function () {
+                alert("Bạn Chưa Đăng Nhập");
+            });
+        }
+        $.ajax({
+
+            type: 'GET',
+            url: 'https://localhost:44301/api/CategoryApi',
+            dataType: 'json',
+            success: function (data) {
+                var str = '';
+                $.each(data, function (key, val) {
+                    str += '<tr  class="dropdown-item"><td>  </td><td><a href="https://localhost:44301/Home/GetMovieByCategory?id=' + val.CategoryID + '">' + val.NameCategory + '</a></td><td>  </td></tr>';
+                });
+
+                $('#lstGenre').html(str);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+        $('#lstGenre').hide();
+        $('#Genre').click(function () {
+            $('#lstCountry').hide();
+            $('#lstGenre').slideToggle();
+
+        });
+
+        $.ajax({
+
+            type: 'GET',
+            url: 'https://localhost:44301/api/CountryApi',
+            dataType: 'json',
+            success: function (data) {
+                var str = '';
+                $.each(data, function (key, val) {
+                    str += '<tr  class="dropdown-item"><td>  </td><td><a href="https://localhost:44301/Home/GetMovieByCountry?id=' + val.CountryID + '">' + val.Name + '</a></td><td>  </td></tr>';
+                });
+
+                $('#lstCountry').html(str);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+        $('#lstCountry').hide();
+        $('#Country').click(function () {
+            $('#lstGenre').hide();
+            $('#lstCountry').slideToggle();
+        });
+    })
+
+</script>

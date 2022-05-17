@@ -29,6 +29,9 @@ namespace Web.Models
         public Nullable<int> Country { get; set; }
         public string Trailer { get; set; }
         public Nullable<int> Rate { get; set; }
+        public string Banner { get; set; }
+        public Nullable<int> Active { get; set; }
+        public string Descripton { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTTapPhim> CTTapPhims { get; set; }

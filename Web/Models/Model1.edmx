@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Movie12Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Movie12Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cast">
           <Key>
             <PropertyRef Name="CastID" />
@@ -46,6 +46,14 @@
           <Property Name="ID2" Type="nchar" MaxLength="10" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Link" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Intermediary">
+          <Key>
+            <PropertyRef Name="CastID" />
+            <PropertyRef Name="IDMovie" />
+          </Key>
+          <Property Name="CastID" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="IDMovie" Type="char" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Movie">
           <Key>
@@ -110,6 +118,9 @@
           <Property Name="Country" Type="int" />
           <Property Name="Trailer" Type="nvarchar(max)" />
           <Property Name="Rate" Type="int" />
+          <Property Name="Banner" Type="nvarchar(max)" />
+          <Property Name="Active" Type="int" />
+          <Property Name="Descripton" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
@@ -149,6 +160,30 @@
             </Principal>
             <Dependent Role="CTTapPhim">
               <PropertyRef Name="ID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Intermediary_Cast">
+          <End Role="Cast" Type="Self.Cast" Multiplicity="1" />
+          <End Role="Intermediary" Type="Self.Intermediary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cast">
+              <PropertyRef Name="CastID" />
+            </Principal>
+            <Dependent Role="Intermediary">
+              <PropertyRef Name="CastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Intermediary_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Intermediary" Type="Self.Intermediary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieID" />
+            </Principal>
+            <Dependent Role="Intermediary">
+              <PropertyRef Name="IDMovie" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -193,6 +228,7 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTTapPhim" EntityType="Self.CTTapPhim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Intermediary" EntityType="Self.Intermediary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MyList" EntityType="Self.MyList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pay" EntityType="Self.Pay" Schema="dbo" store:Type="Tables" />
@@ -203,6 +239,14 @@
           <AssociationSet Name="FK_CTTapPhim_PhimBo" Association="Self.FK_CTTapPhim_PhimBo">
             <End Role="PhimBo" EntitySet="PhimBo" />
             <End Role="CTTapPhim" EntitySet="CTTapPhim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Intermediary_Cast" Association="Self.FK_Intermediary_Cast">
+            <End Role="Cast" EntitySet="Cast" />
+            <End Role="Intermediary" EntitySet="Intermediary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Intermediary_Movie" Association="Self.FK_Intermediary_Movie">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Intermediary" EntitySet="Intermediary" />
           </AssociationSet>
           <AssociationSet Name="FK_Movie_Category" Association="Self.FK_Movie_Category">
             <End Role="Category" EntitySet="Category" />
@@ -217,8 +261,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Movie12Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -231,6 +274,7 @@
           <Property Name="Age" Type="Int32" />
           <Property Name="Images" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Movies" Relationship="Movie12Model.Intermediary" FromRole="Cast" ToRole="Movie" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -298,6 +342,7 @@
           <Property Name="Active" Type="Int32" />
           <Property Name="IDPrice" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Movie_Category" FromRole="Movie" ToRole="Category" />
+          <NavigationProperty Name="Casts" Relationship="Movie12Model.Intermediary" FromRole="Movie" ToRole="Cast" />
         </EntityType>
         <EntityType Name="MyList">
           <Key>
@@ -333,6 +378,9 @@
           <Property Name="Trailer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Rate" Type="Int32" />
           <NavigationProperty Name="CTTapPhims" Relationship="Self.FK_CTTapPhim_PhimBo" FromRole="PhimBo" ToRole="CTTapPhim" />
+          <Property Name="Banner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="Descripton" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
@@ -441,7 +489,15 @@
             <End Role="Pay" EntitySet="Pays" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="Intermediary" Association="Movie12Model.Intermediary">
+            <End Role="Cast" EntitySet="Casts" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="Intermediary">
+          <End Type="Movie12Model.Cast" Role="Cast" Multiplicity="*" />
+          <End Type="Movie12Model.Movie" Role="Movie" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -549,6 +605,9 @@
           <EntitySetMapping Name="PhimBoes">
             <EntityTypeMapping TypeName="Movie12Model.PhimBo">
               <MappingFragment StoreEntitySet="PhimBo">
+                <ScalarProperty Name="Descripton" ColumnName="Descripton" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Banner" ColumnName="Banner" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IDCategory" ColumnName="IDCategory" />
@@ -593,6 +652,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="Intermediary" TypeName="Movie12Model.Intermediary" StoreEntitySet="Intermediary">
+            <EndProperty Name="Movie">
+              <ScalarProperty Name="MovieID" ColumnName="IDMovie" />
+            </EndProperty>
+            <EndProperty Name="Cast">
+              <ScalarProperty Name="CastID" ColumnName="CastID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

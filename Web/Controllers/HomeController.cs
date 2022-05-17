@@ -55,6 +55,12 @@ namespace WebXemPhim.Controllers
             ViewBag.lstMovie = db.Movies.ToList();
             return PartialView(lstMovie);
         }
+        public PartialViewResult TVSeriesBanner()
+        {
+            List<PhimBo> lstMovie = db.PhimBoes.Where(n => n.Active == 1).OrderBy(n => n.Name).ToList();
+            ViewBag.lstMovie = db.PhimBoes.ToList();
+            return PartialView(lstMovie);
+        }
         public PartialViewResult Category1()
         {
             List<Movie> lstMovie = db.Movies.Where(n => n.CategoryID == 1007).OrderBy(n => n.Name).ToList();
@@ -83,10 +89,15 @@ namespace WebXemPhim.Controllers
         {
             return PartialView();
         }
-        public JsonResult Calling()
+        public ActionResult Price()
         {
-            System.Threading.Thread.Sleep(1000);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            Price Basic = db.Prices.Where(n => n.IDPrice == 1).SingleOrDefault();
+            Price Premium = db.Prices.Where(n => n.IDPrice == 2).SingleOrDefault();
+            Price Vip = db.Prices.Where(n => n.IDPrice == 3).SingleOrDefault();
+            ViewBag.basic = Basic;
+            ViewBag.Premium = Premium;
+            ViewBag.Vip = Vip;
+            return View();
         }
     }
 }

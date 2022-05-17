@@ -14,6 +14,12 @@ namespace Web.Models
     
     public partial class Movie
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Movie()
+        {
+            this.Casts = new HashSet<Cast>();
+        }
+    
         public string MovieID { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
@@ -43,5 +49,7 @@ namespace Web.Models
         public Nullable<int> IDPrice { get; set; }
     
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cast> Casts { get; set; }
     }
 }

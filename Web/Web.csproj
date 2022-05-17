@@ -664,6 +664,9 @@
     <Content Include="Views\TVSeries\DetailTVSeries.cshtml" />
     <Content Include="Views\Watch\WatchTVSeries.cshtml" />
     <Content Include="Views\TVSeries\Watch.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\Home\Price.cshtml" />
+    <Content Include="Views\Home\TVSeriesBanner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
