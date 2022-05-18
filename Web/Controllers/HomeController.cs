@@ -45,7 +45,7 @@ namespace WebXemPhim.Controllers
         }
         public PartialViewResult Banner()
         {
-            List<Movie> lstMovie = db.Movies.Where(n => n.Isbanner == 1 && n.Active != 1).OrderBy(n => n.Name).ToList();
+            List<Movie> lstMovie = db.Movies.Where(n => n.Isbanner !=null && n.Active != 1).OrderBy(n => n.Name).ToList();
             ViewBag.lstMovie = db.Movies.ToList();
             return PartialView(lstMovie);
         }

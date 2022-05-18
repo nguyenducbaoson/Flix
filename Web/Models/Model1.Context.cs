@@ -26,6 +26,7 @@ namespace Web.Models
         }
     
         public virtual DbSet<Cast> Casts { get; set; }
+        public virtual DbSet<Cast_Movie> Cast_Movie { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<CTTapPhim> CTTapPhims { get; set; }

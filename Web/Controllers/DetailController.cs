@@ -20,6 +20,19 @@ namespace Web.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
+            //var casts = from a in db.Casts
+            //            join b in db.Cast_Movie on a.CastID equals b.CastID
+            //            join c in db.Movies on b.IDMovie equals c.MovieID
+            //            where MovieID == c.MovieID
+            //            select a.FullName;
+            //ViewData["Actors"] = casts;
+            //return View(movie);
+            //List<Cast_Movie> a = db.Cast_Movie.Where(n => n.IDMovie == MovieID).Take(1).SingleOrDefault();
+            //var b = db.Movies.Where(n => n.MovieID == MovieID).ToList();
+            //List<Cast> casts = db.Casts.Where(n => n.CastID == a.).ToList();
+            //ViewData["Actors"] = casts;
+            var Cast = db.Cast_Movie.Where(n => n.IDMovie == MovieID).ToList();
+            ViewData["Actors"] = Cast;
             return View(movie);
         }
         public ViewResult Cast()

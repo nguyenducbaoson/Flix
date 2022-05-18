@@ -17,7 +17,7 @@ namespace Web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cast()
         {
-            this.Movies = new HashSet<Movie>();
+            this.Cast_Movie = new HashSet<Cast_Movie>();
         }
     
         public string CastID { get; set; }
@@ -25,8 +25,9 @@ namespace Web.Models
         public Nullable<int> Age { get; set; }
         public string Images { get; set; }
         public string About { get; set; }
+        public string IDMovie { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movie> Movies { get; set; }
+        public virtual ICollection<Cast_Movie> Cast_Movie { get; set; }
     }
 }

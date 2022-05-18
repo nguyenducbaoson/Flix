@@ -17,7 +17,7 @@ namespace Web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Movie()
         {
-            this.Casts = new HashSet<Cast>();
+            this.Cast_Movie = new HashSet<Cast_Movie>();
         }
     
         public string MovieID { get; set; }
@@ -44,12 +44,12 @@ namespace Web.Models
         public bool Status { get; set; }
         public Nullable<int> CountryID { get; set; }
         public string Banner { get; set; }
-        public Nullable<int> Isbanner { get; set; }
+        public string Isbanner { get; set; }
         public Nullable<int> Active { get; set; }
         public Nullable<int> IDPrice { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cast> Casts { get; set; }
+        public virtual ICollection<Cast_Movie> Cast_Movie { get; set; }
     }
 }

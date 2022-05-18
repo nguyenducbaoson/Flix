@@ -1,15 +1,7 @@
 ﻿
 html, body {
     height: 100%;
-}
-body, a:hover{
-		cursor: url(../Images/curmiku9.png), auto;	
-	}
-
-html body {
-    cursor: url(../Images/curmiku6.png), auto;
-}
-		
+}	
 .svg-play {
  
     display: block;
