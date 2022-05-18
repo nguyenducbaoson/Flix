@@ -23,6 +23,9 @@
         <AssociationConnector Association="Movie12Model.FK_CTTapPhim_PhimBo" ManuallyRouted="false" />
         <AssociationConnector Association="Movie12Model.FK_Pay_Price" ManuallyRouted="false" />
         <AssociationConnector Association="Movie12Model.FK_User_Pay" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Movie12Model.Cast_TVSeries" Width="1.5" PointX="10" PointY="7.75" />
+        <AssociationConnector Association="Movie12Model.FK_Cast_TVSeries_Cast" />
+        <AssociationConnector Association="Movie12Model.FK_Cast_TVSeries_PhimBo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

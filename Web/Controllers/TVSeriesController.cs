@@ -27,7 +27,10 @@ namespace Web.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
+            var Cast = db.Cast_TVSeries.Where(n => n.TVSeriesID == MovieID).ToList();
+            ViewData["Actors"] = Cast;
             return View(movie);
+
         }
         public ActionResult Views(int? tap,string MovieID = "1")
         {
@@ -48,5 +51,6 @@ namespace Web.Controllers
             ViewData["p"] = p;
             return View(a.ToPagedList(pageNum, pageSize));
         }
+
     }
 }

@@ -18,6 +18,7 @@ namespace Web.Models
         public PhimBo()
         {
             this.CTTapPhims = new HashSet<CTTapPhim>();
+            this.Cast_TVSeries = new HashSet<Cast_TVSeries>();
         }
     
         public string ID { get; set; }
@@ -35,5 +36,7 @@ namespace Web.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTTapPhim> CTTapPhims { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cast_TVSeries> Cast_TVSeries { get; set; }
     }
 }

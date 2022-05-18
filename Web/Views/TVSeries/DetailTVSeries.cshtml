@@ -14,89 +14,153 @@
     }
 </style>
 <div class="container clear_navar" style="padding-top: 60px;">
-
-    <div class="row" style="max-width: 80%">
+    <div class="row" style="max-width: 100%;">
 
         <div class="col-xl-8" style="height: auto; padding-top: 40px">
             <div class=" detail">
-                <div style="   background-image :src(" /Images/Index/wanda-banner.jpg")">
-                    <div class="row" style="margin: 10px">
+                @*<div style="   background-image :src(" /Images/Index/wanda-banner.jpg")">*@
+                <div class="row" style="margin: 10px; box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 40%); ">
 
-                        <div style="width :50%" class="col-12 col-sm-4 col-md-4 ">
-                            <div class="section-header">
-                                @Html.DisplayFor(model => model.Name)
-                            </div>
-                            <img width="40%" src="@Url.Content("~/Images/Index/"+@Html.DisplayFor(model => model.Images))">
+                    <div style="width :50%" class="col-12 col-sm-4 col-md-4 ">
+                        <div class="section-header">
+                            @Html.DisplayFor(model => model.Name)
                         </div>
-                        <div style="width :50%" class="col-12 col-sm-8 col-md-8">
-                            <div class="chitiet" style="padding-top: 20px;width:100%;margin:auto">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td width="100px" style="color: white; font-weight: bold;">Director</td>
-                                            <td>Will Smith</td>
-                                        </tr>
-                                        <tr>
-                                            <td width="100px" style="color: white; font-weight: bold;">Cast</td>
-                                            <td>Will Smith</td>
-                                        </tr>
-                                        <tr>
-                                            <td width="100px" style="color: white; font-weight: bold;">Time</td>
-                                            <td>120 Minutes</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color:white; font-weight: bold;">Country</td>
-                                            <td><a>America</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color: white; font-weight: bold;">Category</td>
-                                            @*<td>@Html.DisplayFor(model => model.Category.NameCategory)</td>*@
-                                        </tr>
-                                        <tr>
-                                            <td style="color: white; font-weight: bold;">Year</td>
-                                            <td data-v-7c633b6c=""><a>@Html.DisplayFor(model => model.Year)</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color: white; font-weight: bold;">Views</td>
-                                            <td data-v-7c633b6c=""><a>13</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color: white; font-weight: bold;">IMDB</td>
-                                            <td data-v-7c633b6c=""><a>7.4 <img src="~/Images/Detail/star (1).png" /></a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        @*<img width="40%" src="@Url.Content("~/Images/Index/"+@Html.DisplayFor(model => model.Image))">*@
 
+                        @*<img width="40%" src="@Url.Content("~/Images/Index/"+@Html.DisplayFor(model => model.Image))">*@
+                        <div>
+                            <div class="container2">
+                                <style>
+                                    .cover:before {
+                                        background-image: url('../../Images/Banner/@Html.DisplayFor(model => model.Banner)');
+                                        background-repeat: no-repeat;
+                                    }
+                                </style>
+                                <div class="cover">
 
-                            <div style="padding-top: 25px;">
-                                <ul class="nav-menu" id="nav-menu">
-                                    <li>
-                                        @if (Session["User"] != null)
+                                    <div class="columntag">
+                                        <div class="tag1">Adventure</div>
+                                        <div class="tag2">Fantasy</div>
+                                        <div class="tag3">Drama</div>
+                                    </div>
+                                    @*<div class="menu">
+
+                                            <div class="title">Game of Thrones</div>
+                                            <div class="rating">
+                                                IMDb <span class="fa fa-star"></span><span> 9.5/10</span>
+                                            </div>
+
+                                        </div>*@
+                                </div>
+                                <div class="info">
+                                    <div class="cast">
+                                        <h2>Cast:</h2>
+                                        @foreach (var item in ViewData["Actors"] as List<Cast_TVSeries>)
                                         {
-                                            <a href="@Url.Action("Views","TVSeries",new { MovieID = @Model.ID })" class="btn btn-hover">
-                                                <span>Watch Now</span>
+                                            <a href="@Url.Action("Profile","Actors",new {@CastID = @item.Cast.CastID })" data-tooltip="@item.Cast.FullName" data-placement="top">
+                                                <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
                                             </a>
                                         }
-                                        @if (Session["User"] == null)
-                                        {
-                                            <a id="demo" class="btn btn-hover">
-                                                <span>Watch Now</span>
+                                        @*<a href="#" data-tooltip="Peter Dinklage" data-placement="top">
+                                                <img src="https://pbs.twimg.com/profile_images/3408187873/3ac928389d4a3f78b8a1bfb8dd42cec3_normal.jpeg" alt="avatar1" />
                                             </a>
-                                        }
-                                    </li>
-                                    <li>
-                                        <p class="btn btn-hover" onclick="return them('+@Session["TK"]+','+@Model.ID+')">
+                                            <a href="#" data-tooltip="Emilia Clarke" data-placement="top">
+                                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRu-erGhZPhzH0Aq5s8UKFOQL0GNFVqnlN3C08Fayjm_R9nvuYHPQ" alt="avatar3" />
+                                            </a>
+                                            <a href="#" data-tooltip="Zendaya" data-placement="top">
+                                                <img src="~/Images/Actors/zendaya1_Fotor (1).jpg" alt="avatar3" />
+                                            </a>
+                                            <a href="#" data-tooltip="Tom Holland" data-placement="top">
+                                                <img src="~/Images/Actors/images-_3_ (1).jpg" alt="avatar3" />
+                                            </a>*@
 
-                                            <a href="#" class="btn btn-hover">
-                                                <span>Watch Later</span>
-                                            </a>
-                                    </li>
-                                </ul>
+                                    </div>
+                                    <div class="text">
+                                        While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, plans to return after thousands of years in the North.
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div style="width: 50%; padding-top: 50px;" class="col-12 col-sm-8 col-md-8">
+                        <div class="chitiet" style="padding-top: 20px;width:100%;margin:auto">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td width="100px" style="color: white; font-weight: bold;">Director</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100px" style="color: white; font-weight: bold;">Cast</td>
+                                        <td>
+                                            <div class="avatars">
+                                                @foreach (var item in ViewData["Actors"] as List<Cast_TVSeries>)
+                                                {
+
+                                                    <a href="@Url.Action("Profile","Actors",new {@ID = item.Cast.CastID })" data-tooltip="Person 1" data-placement="top" style="cursor:pointer;padding-left:15px">
+                                                        <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
+                                                    </a>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100px" style="color: white; font-weight: bold;">Time</td>
+                                        <td>120 Minutes</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:white; font-weight: bold;">Country</td>
+                                        <td><a>America</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: white; font-weight: bold;">Genre</td>
+                                        @*<td>@Html.DisplayFor(model => model.Category.NameCategory)</td>*@
+                                    </tr>
+                                    <tr>
+                                        <td style="color: white; font-weight: bold;">Date Release</td>
+                                        <td data-v-7c633b6c=""><a>@Html.DisplayFor(model => model.Year)</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: white; font-weight: bold;">Views</td>
+                                        <td data-v-7c633b6c=""><a>13</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: white; font-weight: bold;">IMDB</td>
+                                        <td data-v-7c633b6c=""><a><span class="fa fa-star"></span>7.4/10</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="padding-top: 25px;">
+                            <ul class="nav-menu" id="nav-menu">
+                                <li>
+                                    @if (Session["User"] != null)
+                                    {
+                                        <a href="@Url.Action("Views","TVSeries",new { MovieID = @Model.ID })" class="btn btn-hover">
+                                            <span>Watch Now</span>
+                                        </a>
+                                    }
+                                    @if (Session["User"] == null)
+                                    {
+                                        <a id="demo" class="btn btn-hover">
+                                            <span style="cursor:pointer">Watch Now</span>
+                                        </a>
+                                    }
+                                </li>
+                                <li>
+                                    <p class="btn btn-hover" onclick="return them('+@Session["TK"]+','+@Model.ID+')">
+
+                                        <a href="#" class="btn btn-hover">
+                                            <span style="cursor:pointer">Watch Later</span>
+                                        </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
+                @*</div>*@
                 <div class="film-desc" style="padding-top: 15px; margin: 20px">
                     <span>Nội dung</span>
                     <div id="summary">
@@ -128,6 +192,211 @@
 @Html.Action("Load", "Pay")
 @Html.Action("Category2", "Home")
 @Html.Action("Category1", "Home")
+<style type="text/css">
+    @@import url(https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+    body {
+        background: var(--body-bg);
+    }
+
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+
+    .movie-card {
+        padding: 40px 0;
+        color: #A9A8A3;
+    }
+
+    .container2 {
+        width: 619px;
+        height: 640px;
+        margin: 0 auto;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        position: relative;
+    }
+
+    .cover {
+        height: 365px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        margin: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+        .cover:before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            /*  transform: skewX(20deg);*/
+            border-bottom-left-radius: 20px;
+            transform-origin: 0 0;
+        }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    /*a:hover{
+        text-decoration:underline;
+    }*/
+    .menu {
+        text-align: center;
+        padding: 40px 0 0 220px;
+        z-index: 1;
+    }
+
+    .fa {
+        color: #ffea00;
+    }
+
+    .rating {
+    }
+
+    .title {
+        color: white;
+        font-size: 44px;
+    }
+
+    .columntag {
+        padding-top: 200px;
+    }
+
+    .tag1, .tag2, .tag3 {
+        color: black;
+        background: white;
+        border-radius: 10px;
+        font-size: 14px;
+        cursor: pointer;
+        line-height: 16px;
+        padding: 3px 8px;
+        float: left;
+        position: relative;
+    }
+
+    .tag1 {
+        margin-left: 27px;
+    }
+
+    .tag2 {
+        margin-top: 25px;
+        margin-left: -50px;
+    }
+
+    .tag3 {
+        margin-top: 50px;
+        margin-left: -45px;
+    }
+
+    .tag1:hover {
+        background: #ddd;
+    }
+
+    .tag2:hover {
+        background: #ddd;
+    }
+
+    .tag3:hover {
+        background: #ddd;
+    }
+
+    .info {
+        clear: both;
+    }
+
+    .cast {
+        float: left;
+        width: 250px;
+        margin-left: 10px;
+        padding-top: 35px;
+    }
+
+        .cast img {
+            border-radius: 50px;
+            cursor: pointer;
+            border: 3px solid white;
+        }
+
+            .cast img:hover {
+                opacity: 0.6;
+            }
+
+        .cast a:hover {
+            text-decoration: none;
+        }
+
+    .text {
+        float: right;
+        width: 350px;
+        padding-top: 50px;
+    }
+
+    a[data-tooltip] {
+        position: relative;
+    }
+
+        a[data-tooltip]::before,
+        a[data-tooltip]::after {
+            position: absolute;
+            display: none;
+            opacity: 0.85;
+        }
+
+        a[data-tooltip]::before {
+            /*
+       * using data-tooltip instead of title so we
+       * don't have the real tooltip overlapping
+       */
+            content: attr(data-tooltip);
+            background: #000;
+            color: #fff;
+            font-size: 13px;
+            padding: 5px;
+            border-radius: 5px;
+            /* we don't want the text to wrap */
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        a[data-tooltip]::after {
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            content: '';
+        }
+
+        a[data-tooltip]:hover::before,
+        a[data-tooltip]:hover::after {
+            display: block;
+        }
+
+        /** positioning **/
+
+        a[data-tooltip][data-placement="top"]::before {
+            bottom: 100%;
+            left: 0;
+            margin-bottom: 40px;
+        }
+
+        a[data-tooltip][data-placement="top"]::after {
+            border-top-color: #000;
+            border-bottom: none;
+            bottom: 50px;
+            left: 20px;
+            margin-bottom: 4px;
+        }
+</style>
 <script>
     function them(e, i) {
 
@@ -151,5 +420,3 @@
     }
 
 </script>
-
-

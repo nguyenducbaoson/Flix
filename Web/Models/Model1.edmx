@@ -30,6 +30,15 @@
           <Property Name="IDMovie" Type="char" MaxLength="25" Nullable="false" />
           <Property Name="About" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Cast_TVSeries">
+          <Key>
+            <PropertyRef Name="CastID" />
+            <PropertyRef Name="TVSeriesID" />
+          </Key>
+          <Property Name="CastID" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="TVSeriesID" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="About" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -58,7 +67,7 @@
           </Key>
           <Property Name="ID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="TapPhim" Type="int" />
-          <Property Name="ID2" Type="nchar" MaxLength="10" />
+          <Property Name="ID2" Type="char" MaxLength="25" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Link" Type="nvarchar(max)" />
         </EntityType>
@@ -116,7 +125,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID" Type="char" MaxLength="25" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="IDCategory" Type="int" />
           <Property Name="Year" Type="int" />
@@ -182,6 +191,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cast_TVSeries_Cast">
+          <End Role="Cast" Type="Self.Cast" Multiplicity="1" />
+          <End Role="Cast_TVSeries" Type="Self.Cast_TVSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cast">
+              <PropertyRef Name="CastID" />
+            </Principal>
+            <Dependent Role="Cast_TVSeries">
+              <PropertyRef Name="CastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cast_TVSeries_PhimBo">
+          <End Role="PhimBo" Type="Self.PhimBo" Multiplicity="1" />
+          <End Role="Cast_TVSeries" Type="Self.Cast_TVSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhimBo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cast_TVSeries">
+              <PropertyRef Name="TVSeriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CTTapPhim_PhimBo">
           <End Role="PhimBo" Type="Self.PhimBo" Multiplicity="0..1" />
           <End Role="CTTapPhim" Type="Self.CTTapPhim" Multiplicity="*" />
@@ -233,6 +266,7 @@
         <EntityContainer Name="Movie12ModelStoreContainer">
           <EntitySet Name="Cast" EntityType="Self.Cast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cast_Movie" EntityType="Self.Cast_Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cast_TVSeries" EntityType="Self.Cast_TVSeries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTTapPhim" EntityType="Self.CTTapPhim" Schema="dbo" store:Type="Tables" />
@@ -250,6 +284,14 @@
           <AssociationSet Name="FK_Cast_Movie_Movie" Association="Self.FK_Cast_Movie_Movie">
             <End Role="Movie" EntitySet="Movie" />
             <End Role="Cast_Movie" EntitySet="Cast_Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cast_TVSeries_Cast" Association="Self.FK_Cast_TVSeries_Cast">
+            <End Role="Cast" EntitySet="Cast" />
+            <End Role="Cast_TVSeries" EntitySet="Cast_TVSeries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cast_TVSeries_PhimBo" Association="Self.FK_Cast_TVSeries_PhimBo">
+            <End Role="PhimBo" EntitySet="PhimBo" />
+            <End Role="Cast_TVSeries" EntitySet="Cast_TVSeries" />
           </AssociationSet>
           <AssociationSet Name="FK_CTTapPhim_PhimBo" Association="Self.FK_CTTapPhim_PhimBo">
             <End Role="PhimBo" EntitySet="PhimBo" />
@@ -288,6 +330,7 @@
           <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cast_Movie" Relationship="Self.FK_Cast_Movie_Cast" FromRole="Cast" ToRole="Cast_Movie" />
           <Property Name="Born" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cast_TVSeries" Relationship="Movie12Model.FK_Cast_TVSeries_Cast" FromRole="Cast" ToRole="Cast_TVSeries" />
         </EntityType>
         <EntityType Name="Cast_Movie">
           <Key>
@@ -329,7 +372,7 @@
           </Key>
           <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="TapPhim" Type="Int32" />
-          <Property Name="ID2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ID2" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PhimBo" Relationship="Self.FK_CTTapPhim_PhimBo" FromRole="CTTapPhim" ToRole="PhimBo" />
@@ -392,7 +435,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDCategory" Type="Int32" />
           <Property Name="Year" Type="Int32" />
@@ -405,6 +448,7 @@
           <Property Name="Active" Type="Int32" />
           <Property Name="Descripton" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CTTapPhims" Relationship="Self.FK_CTTapPhim_PhimBo" FromRole="PhimBo" ToRole="CTTapPhim" />
+          <NavigationProperty Name="Cast_TVSeries" Relationship="Movie12Model.FK_Cast_TVSeries_PhimBo" FromRole="PhimBo" ToRole="Cast_TVSeries" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
@@ -546,7 +590,51 @@
             <End Role="Pay" EntitySet="Pays" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Cast_TVSeries" EntityType="Movie12Model.Cast_TVSeries" />
+          <AssociationSet Name="FK_Cast_TVSeries_Cast" Association="Movie12Model.FK_Cast_TVSeries_Cast">
+            <End Role="Cast" EntitySet="Casts" />
+            <End Role="Cast_TVSeries" EntitySet="Cast_TVSeries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cast_TVSeries_PhimBo" Association="Movie12Model.FK_Cast_TVSeries_PhimBo">
+            <End Role="PhimBo" EntitySet="PhimBoes" />
+            <End Role="Cast_TVSeries" EntitySet="Cast_TVSeries" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Cast_TVSeries">
+          <Key>
+            <PropertyRef Name="CastID" />
+            <PropertyRef Name="TVSeriesID" />
+          </Key>
+          <Property Name="CastID" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="TVSeriesID" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cast" Relationship="Movie12Model.FK_Cast_TVSeries_Cast" FromRole="Cast_TVSeries" ToRole="Cast" />
+          <NavigationProperty Name="PhimBo" Relationship="Movie12Model.FK_Cast_TVSeries_PhimBo" FromRole="Cast_TVSeries" ToRole="PhimBo" />
+        </EntityType>
+        <Association Name="FK_Cast_TVSeries_Cast">
+          <End Type="Movie12Model.Cast" Role="Cast" Multiplicity="1" />
+          <End Type="Movie12Model.Cast_TVSeries" Role="Cast_TVSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cast">
+              <PropertyRef Name="CastID" />
+            </Principal>
+            <Dependent Role="Cast_TVSeries">
+              <PropertyRef Name="CastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cast_TVSeries_PhimBo">
+          <End Type="Movie12Model.PhimBo" Role="PhimBo" Multiplicity="1" />
+          <End Type="Movie12Model.Cast_TVSeries" Role="Cast_TVSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhimBo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cast_TVSeries">
+              <PropertyRef Name="TVSeriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -713,6 +801,15 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Permission" ColumnName="Permission" />
                 <ScalarProperty Name="IDPay" ColumnName="IDPay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cast_TVSeries">
+            <EntityTypeMapping TypeName="Movie12Model.Cast_TVSeries">
+              <MappingFragment StoreEntitySet="Cast_TVSeries">
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="TVSeriesID" ColumnName="TVSeriesID" />
+                <ScalarProperty Name="CastID" ColumnName="CastID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

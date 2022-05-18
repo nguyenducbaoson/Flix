@@ -393,6 +393,9 @@
     <Compile Include="Models\Cast_Movie.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cast_TVSeries.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -576,10 +579,12 @@
     <Content Include="Images\Banner\images-motthegioi-vn-8443_maxresdefault-copy-1 %281%29.jpg" />
     <Content Include="Images\Banner\insidious.jpg" />
     <Content Include="Images\Banner\IT-chapter-two-banner %281%29.jpg" />
+    <Content Include="Images\Banner\loki2.jpg" />
     <Content Include="Images\Banner\Love-Rosie.jpg" />
     <Content Include="Images\Banner\Mandalorian.png" />
     <Content Include="Images\Banner\My Mr.Wife.jpg" />
     <Content Include="Images\Banner\overmoon-banner.jpg" />
+    <Content Include="Images\Banner\peakpx %282%29.jpg" />
     <Content Include="Images\Banner\Radio Romance.jpg" />
     <Content Include="Images\Banner\resident-evil-movies-in-order.jpg" />
     <Content Include="Images\Banner\Spider-Man-Noway-Home-28 %281%29.jpg" />
@@ -668,7 +673,41 @@
     <Content Include="Images\Login\close.png" />
     <Content Include="Images\Login\netflix-bg.jpg" />
     <Content Include="Images\Login\netflix-logo.png" />
+    <Content Include="Images\Pictures\120219-kat-dennings-lead-2000.jpg" />
+    <Content Include="Images\Pictures\American-actor-Chris-Evans-2019.jpg" />
+    <Content Include="Images\Pictures\Anthony-Hopkins-sir-anthony-hopkins-41110289-1572-2000.jpg" />
+    <Content Include="Images\Pictures\Ben Mendelsohn.jpg" />
+    <Content Include="Images\Pictures\Benedict Cumberbatch.jpg" />
+    <Content Include="Images\Pictures\Benedict Wong.jpg" />
+    <Content Include="Images\Pictures\brie.jpg" />
+    <Content Include="Images\Pictures\cage.jpg" />
+    <Content Include="Images\Pictures\chadwick.jpg" />
+    <Content Include="Images\Pictures\chrishemsworth-66af4d98.jpg" />
+    <Content Include="Images\Pictures\Danai Gurira.jpg" />
+    <Content Include="Images\Pictures\dinkage.jpg" />
+    <Content Include="Images\Pictures\Djimon_Hounsou_%28cropped%29.jpg" />
+    <Content Include="Images\Pictures\emma.jpg" />
+    <Content Include="Images\Pictures\Ethan_Hawke_66ème_Festival_de_Venise_%28Mostra%29_2.jpg" />
+    <Content Include="Images\Pictures\freeman.jpg" />
+    <Content Include="Images\Pictures\jon.jpg" />
+    <Content Include="Images\Pictures\jordan.jpg" />
+    <Content Include="Images\Pictures\Josh_Duhamel_SXSW_2017_%28cropped%29.jpg" />
+    <Content Include="Images\Pictures\Lupita Nyong%27o.jpg" />
+    <Content Include="Images\Pictures\Mark_Ruffalo_%2844707380685%29_%28cropped%29.jpg" />
+    <Content Include="Images\Pictures\Mark_Wahlberg_2021.jpg" />
+    <Content Include="Images\Pictures\may.jpg" />
+    <Content Include="Images\Pictures\nu-dien-vien-elizabeth-olsen-6.jpg" />
+    <Content Include="Images\Pictures\Oscar_Isaac_by_Gage_Skidmore.jpg" />
+    <Content Include="Images\Pictures\Paul_Bettany_by_Gage_Skidmore_2.jpg" />
+    <Content Include="Images\Pictures\peter.jpg" />
+    <Content Include="Images\Pictures\Randall Park.jpg" />
+    <Content Include="Images\Pictures\robert-downey-jr2-jpg-1367833815.jpg" />
+    <Content Include="Images\Pictures\ryan.jpg" />
+    <Content Include="Images\Pictures\Samuel_L._Jackson_2019_by_Glenn_Francis.jpg" />
+    <Content Include="Images\Pictures\Stanley Tucci.jpg" />
     <Content Include="Images\Pictures\Tom_Holland.jpg" />
+    <Content Include="Images\Pictures\Willem Dafoe.jpg" />
+    <Content Include="Images\Pictures\Zendaya.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -763,6 +802,7 @@
     <Content Include="Views\Actors\Profile.cshtml" />
     <Content Include="Views\Actors\Index.cshtml" />
     <Content Include="Views\Detail\Profile.cshtml" />
+    <Content Include="Views\Actors\Moviesjoined.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

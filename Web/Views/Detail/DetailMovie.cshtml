@@ -4,7 +4,6 @@
 @{
     ViewBag.Title = "DetailMovie";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var a =ViewBag.Cast;
 }
 <link href="~/css/Detail/css.css" rel="stylesheet" />
 <link href="~/css/Detail/classy-nav.css" rel="stylesheet" />
@@ -27,60 +26,62 @@
                                 @Html.DisplayFor(model => model.Name)
                             </div>
                             @*<img width="40%" src="@Url.Content("~/Images/Index/"+@Html.DisplayFor(model => model.Image))">*@
-                        <div>
-                            <div class="container2">
-                                <style>
+      
+                            @*<img width="40%" src="@Url.Content("~/Images/Index/"+@Html.DisplayFor(model => model.Image))">*@
+                            <div>
+                                <div class="container2">
+                                    <style>
                                     .cover:before {
                                         background-image: url('../../Images/Banner/@Html.DisplayFor(model => model.Banner)');
                                         background-repeat: no-repeat;
                                     }
-                                </style>
-                                <div class="cover">
+                                    </style>
+                                    <div class="cover">
 
-                                    <div class="columntag">
-                                        <div class="tag1">Adventure</div>
-                                        <div class="tag2">Fantasy</div>
-                                        <div class="tag3">Drama</div>
-                                    </div>
-                                    @*<div class="menu">
-
-                                        <div class="title">Game of Thrones</div>
-                                        <div class="rating">
-                                            IMDb <span class="fa fa-star"></span><span> 9.5/10</span>
+                                        <div class="columntag">
+                                            <div class="tag1">Adventure</div>
+                                            <div class="tag2">Fantasy</div>
+                                            <div class="tag3">Drama</div>
                                         </div>
+                                        @*<div class="menu">
 
-                                    </div>*@
-                                </div>
-                                <div class="info">
-                                    <div class="cast">
-                                        <h2>Cast:</h2>
-                                        @foreach (var item in ViewData["Actors"] as List<Cast_Movie>)
-                                        {
-                                            <a href="@Url.Action("Profile","Detail",new {@CastID = @item.Cast.CastID })" data-tooltip="@item.Cast.FullName" data-placement="top">
-                                                <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
-                                            </a>
-                                        }
+                        <div class="title">Game of Thrones</div>
+                        <div class="rating">
+                            IMDb <span class="fa fa-star"></span><span> 9.5/10</span>
+                        </div>
+
+                    </div>*@
+                                    </div>
+                                    <div class="info">
+                                        <div class="cast">
+                                            <h2>Cast:</h2>
+                                            @foreach (var item in ViewData["Actors"] as List<Cast_Movie>)
+                                            {
+                                                <a href="@Url.Action("Profile","Actors",new {@CastID = @item.Cast.CastID })" data-tooltip="@item.Cast.FullName" data-placement="top">
+                                                    <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
+                                                </a>
+                                            }
                                             @*<a href="#" data-tooltip="Peter Dinklage" data-placement="top">
-                <img src="https://pbs.twimg.com/profile_images/3408187873/3ac928389d4a3f78b8a1bfb8dd42cec3_normal.jpeg" alt="avatar1" />
-            </a>
-            <a href="#" data-tooltip="Emilia Clarke" data-placement="top">
-                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRu-erGhZPhzH0Aq5s8UKFOQL0GNFVqnlN3C08Fayjm_R9nvuYHPQ" alt="avatar3" />
-            </a>
-            <a href="#" data-tooltip="Zendaya" data-placement="top">
-                <img src="~/Images/Actors/zendaya1_Fotor (1).jpg" alt="avatar3" />
-            </a>
-            <a href="#" data-tooltip="Tom Holland" data-placement="top">
-                <img src="~/Images/Actors/images-_3_ (1).jpg" alt="avatar3" />
-            </a>*@
+                            <img src="https://pbs.twimg.com/profile_images/3408187873/3ac928389d4a3f78b8a1bfb8dd42cec3_normal.jpeg" alt="avatar1" />
+                        </a>
+                        <a href="#" data-tooltip="Emilia Clarke" data-placement="top">
+                            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRu-erGhZPhzH0Aq5s8UKFOQL0GNFVqnlN3C08Fayjm_R9nvuYHPQ" alt="avatar3" />
+                        </a>
+                        <a href="#" data-tooltip="Zendaya" data-placement="top">
+                            <img src="~/Images/Actors/zendaya1_Fotor (1).jpg" alt="avatar3" />
+                        </a>
+                        <a href="#" data-tooltip="Tom Holland" data-placement="top">
+                            <img src="~/Images/Actors/images-_3_ (1).jpg" alt="avatar3" />
+                        </a>*@
 
                                         </div>
-                                    <div class="text">
-                                        While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, plans to return after thousands of years in the North.
-                                    </div>
+                                        <div class="text">
+                                            While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, plans to return after thousands of years in the North.
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                         <div style="width: 50%; padding-top: 50px;" class="col-12 col-sm-8 col-md-8">
             <div class="chitiet" style="padding-top: 20px;width:100%;margin:auto">
