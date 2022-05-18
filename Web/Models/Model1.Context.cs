@@ -38,5 +38,8 @@ namespace Web.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Cast_TVSeries> Cast_TVSeries { get; set; }
+        public virtual DbSet<Director> Directors { get; set; }
+        public virtual DbSet<Director_Movie> Director_Movie { get; set; }
+        public virtual DbSet<Director_TVSeries> Director_TVSeries { get; set; }
     }
 }

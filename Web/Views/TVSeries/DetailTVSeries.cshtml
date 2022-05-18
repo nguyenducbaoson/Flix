@@ -88,18 +88,13 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td width="100px" style="color: white; font-weight: bold;">Director</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="100px" style="color: white; font-weight: bold;">Cast</td>
+                                        <td width="100px" style="color: white; font-weight: bold; padding-top: 28px;">Director</td>
                                         <td>
-                                            <div class="avatars">
-                                                @foreach (var item in ViewData["Actors"] as List<Cast_TVSeries>)
+                                            <div class="cast">
+                                                @foreach (var item in ViewData["Director"] as List<Director_TVSeries>)
                                                 {
-
-                                                    <a href="@Url.Action("Profile","Actors",new {@ID = item.Cast.CastID })" data-tooltip="Person 1" data-placement="top" style="cursor:pointer;padding-left:15px">
-                                                        <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
+                                                    <a href="@Url.Action("Profile","Director",new {DirectorID = @item.Director.DirectorID })" data-tooltip="@item.Director.FullName" data-placement="top">
+                                                        <img src="~/Images/Directors/@item.Director.Images" alt="@item.Director.FullName" />
                                                     </a>
                                                 }
                                             </div>

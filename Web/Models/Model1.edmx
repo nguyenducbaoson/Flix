@@ -71,6 +71,39 @@
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Link" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="DirectorID" />
+          </Key>
+          <Property Name="DirectorID" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Images" Type="nvarchar(max)" />
+          <Property Name="BirthName" Type="nvarchar(max)" />
+          <Property Name="DateofBirth" Type="date" />
+          <Property Name="Height" Type="nchar" MaxLength="10" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="Picture" Type="nvarchar(max)" />
+          <Property Name="Born" Type="nvarchar(max)" />
+          <Property Name="About" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Director_Movie">
+          <Key>
+            <PropertyRef Name="DriectorID" />
+            <PropertyRef Name="IDMovie" />
+          </Key>
+          <Property Name="DriectorID" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="IDMovie" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="About" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Director_TVSeries">
+          <Key>
+            <PropertyRef Name="DirectorID" />
+            <PropertyRef Name="TVSeriesID" />
+          </Key>
+          <Property Name="DirectorID" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="TVSeriesID" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="About" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Movie">
           <Key>
             <PropertyRef Name="MovieID" />
@@ -227,6 +260,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Director_Movie_Director">
+          <End Role="Director" Type="Self.Director" Multiplicity="1" />
+          <End Role="Director_Movie" Type="Self.Director_Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="DirectorID" />
+            </Principal>
+            <Dependent Role="Director_Movie">
+              <PropertyRef Name="DriectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_Movie_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Director_Movie" Type="Self.Director_Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieID" />
+            </Principal>
+            <Dependent Role="Director_Movie">
+              <PropertyRef Name="IDMovie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_TVSeries_Director">
+          <End Role="Director" Type="Self.Director" Multiplicity="1" />
+          <End Role="Director_TVSeries" Type="Self.Director_TVSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="DirectorID" />
+            </Principal>
+            <Dependent Role="Director_TVSeries">
+              <PropertyRef Name="DirectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_TVSeries_PhimBo">
+          <End Role="PhimBo" Type="Self.PhimBo" Multiplicity="1" />
+          <End Role="Director_TVSeries" Type="Self.Director_TVSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhimBo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Director_TVSeries">
+              <PropertyRef Name="TVSeriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Movie_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
@@ -270,6 +351,9 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTTapPhim" EntityType="Self.CTTapPhim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Director_Movie" EntityType="Self.Director_Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Director_TVSeries" EntityType="Self.Director_TVSeries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MyList" EntityType="Self.MyList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pay" EntityType="Self.Pay" Schema="dbo" store:Type="Tables" />
@@ -296,6 +380,22 @@
           <AssociationSet Name="FK_CTTapPhim_PhimBo" Association="Self.FK_CTTapPhim_PhimBo">
             <End Role="PhimBo" EntitySet="PhimBo" />
             <End Role="CTTapPhim" EntitySet="CTTapPhim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_Movie_Director" Association="Self.FK_Director_Movie_Director">
+            <End Role="Director" EntitySet="Director" />
+            <End Role="Director_Movie" EntitySet="Director_Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_Movie_Movie" Association="Self.FK_Director_Movie_Movie">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Director_Movie" EntitySet="Director_Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_TVSeries_Director" Association="Self.FK_Director_TVSeries_Director">
+            <End Role="Director" EntitySet="Director" />
+            <End Role="Director_TVSeries" EntitySet="Director_TVSeries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_TVSeries_PhimBo" Association="Self.FK_Director_TVSeries_PhimBo">
+            <End Role="PhimBo" EntitySet="PhimBo" />
+            <End Role="Director_TVSeries" EntitySet="Director_TVSeries" />
           </AssociationSet>
           <AssociationSet Name="FK_Movie_Category" Association="Self.FK_Movie_Category">
             <End Role="Category" EntitySet="Category" />
@@ -410,6 +510,7 @@
           <Property Name="IDPrice" Type="Int32" />
           <NavigationProperty Name="Cast_Movie" Relationship="Self.FK_Cast_Movie_Movie" FromRole="Movie" ToRole="Cast_Movie" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Movie_Category" FromRole="Movie" ToRole="Category" />
+          <NavigationProperty Name="Director_Movie" Relationship="Movie12Model.FK_Director_Movie_Movie" FromRole="Movie" ToRole="Director_Movie" />
         </EntityType>
         <EntityType Name="MyList">
           <Key>
@@ -449,6 +550,7 @@
           <Property Name="Descripton" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CTTapPhims" Relationship="Self.FK_CTTapPhim_PhimBo" FromRole="PhimBo" ToRole="CTTapPhim" />
           <NavigationProperty Name="Cast_TVSeries" Relationship="Movie12Model.FK_Cast_TVSeries_PhimBo" FromRole="PhimBo" ToRole="Cast_TVSeries" />
+          <NavigationProperty Name="Director_TVSeries" Relationship="Movie12Model.FK_Director_TVSeries_PhimBo" FromRole="PhimBo" ToRole="Director_TVSeries" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
@@ -599,6 +701,25 @@
             <End Role="PhimBo" EntitySet="PhimBoes" />
             <End Role="Cast_TVSeries" EntitySet="Cast_TVSeries" />
           </AssociationSet>
+          <EntitySet Name="Directors" EntityType="Movie12Model.Director" />
+          <EntitySet Name="Director_Movie" EntityType="Movie12Model.Director_Movie" />
+          <EntitySet Name="Director_TVSeries" EntityType="Movie12Model.Director_TVSeries" />
+          <AssociationSet Name="FK_Director_Movie_Director" Association="Movie12Model.FK_Director_Movie_Director">
+            <End Role="Director" EntitySet="Directors" />
+            <End Role="Director_Movie" EntitySet="Director_Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_TVSeries_Director" Association="Movie12Model.FK_Director_TVSeries_Director">
+            <End Role="Director" EntitySet="Directors" />
+            <End Role="Director_TVSeries" EntitySet="Director_TVSeries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_Movie_Movie" Association="Movie12Model.FK_Director_Movie_Movie">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="Director_Movie" EntitySet="Director_Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_TVSeries_PhimBo" Association="Movie12Model.FK_Director_TVSeries_PhimBo">
+            <End Role="PhimBo" EntitySet="PhimBoes" />
+            <End Role="Director_TVSeries" EntitySet="Director_TVSeries" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cast_TVSeries">
           <Key>
@@ -631,6 +752,93 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Cast_TVSeries">
+              <PropertyRef Name="TVSeriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="DirectorID" />
+          </Key>
+          <Property Name="DirectorID" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BirthName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="Height" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Born" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Director_Movie" Relationship="Movie12Model.FK_Director_Movie_Director" FromRole="Director" ToRole="Director_Movie" />
+          <NavigationProperty Name="Director_TVSeries" Relationship="Movie12Model.FK_Director_TVSeries_Director" FromRole="Director" ToRole="Director_TVSeries" />
+        </EntityType>
+        <EntityType Name="Director_Movie">
+          <Key>
+            <PropertyRef Name="DriectorID" />
+            <PropertyRef Name="IDMovie" />
+          </Key>
+          <Property Name="DriectorID" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="IDMovie" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Director" Relationship="Movie12Model.FK_Director_Movie_Director" FromRole="Director_Movie" ToRole="Director" />
+          <NavigationProperty Name="Movie" Relationship="Movie12Model.FK_Director_Movie_Movie" FromRole="Director_Movie" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Director_TVSeries">
+          <Key>
+            <PropertyRef Name="DirectorID" />
+            <PropertyRef Name="TVSeriesID" />
+          </Key>
+          <Property Name="DirectorID" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="TVSeriesID" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Director" Relationship="Movie12Model.FK_Director_TVSeries_Director" FromRole="Director_TVSeries" ToRole="Director" />
+          <NavigationProperty Name="PhimBo" Relationship="Movie12Model.FK_Director_TVSeries_PhimBo" FromRole="Director_TVSeries" ToRole="PhimBo" />
+        </EntityType>
+        <Association Name="FK_Director_Movie_Director">
+          <End Type="Movie12Model.Director" Role="Director" Multiplicity="1" />
+          <End Type="Movie12Model.Director_Movie" Role="Director_Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="DirectorID" />
+            </Principal>
+            <Dependent Role="Director_Movie">
+              <PropertyRef Name="DriectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_TVSeries_Director">
+          <End Type="Movie12Model.Director" Role="Director" Multiplicity="1" />
+          <End Type="Movie12Model.Director_TVSeries" Role="Director_TVSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="DirectorID" />
+            </Principal>
+            <Dependent Role="Director_TVSeries">
+              <PropertyRef Name="DirectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_Movie_Movie">
+          <End Type="Movie12Model.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="Movie12Model.Director_Movie" Role="Director_Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieID" />
+            </Principal>
+            <Dependent Role="Director_Movie">
+              <PropertyRef Name="IDMovie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_TVSeries_PhimBo">
+          <End Type="Movie12Model.PhimBo" Role="PhimBo" Multiplicity="1" />
+          <End Type="Movie12Model.Director_TVSeries" Role="Director_TVSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhimBo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Director_TVSeries">
               <PropertyRef Name="TVSeriesID" />
             </Dependent>
           </ReferentialConstraint>
@@ -810,6 +1018,40 @@
                 <ScalarProperty Name="About" ColumnName="About" />
                 <ScalarProperty Name="TVSeriesID" ColumnName="TVSeriesID" />
                 <ScalarProperty Name="CastID" ColumnName="CastID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Directors">
+            <EntityTypeMapping TypeName="Movie12Model.Director">
+              <MappingFragment StoreEntitySet="Director">
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Born" ColumnName="Born" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="BirthName" ColumnName="BirthName" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Director_Movie">
+            <EntityTypeMapping TypeName="Movie12Model.Director_Movie">
+              <MappingFragment StoreEntitySet="Director_Movie">
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="IDMovie" ColumnName="IDMovie" />
+                <ScalarProperty Name="DriectorID" ColumnName="DriectorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Director_TVSeries">
+            <EntityTypeMapping TypeName="Movie12Model.Director_TVSeries">
+              <MappingFragment StoreEntitySet="Director_TVSeries">
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="TVSeriesID" ColumnName="TVSeriesID" />
+                <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

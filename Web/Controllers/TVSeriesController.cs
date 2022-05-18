@@ -29,6 +29,8 @@ namespace Web.Controllers
             }
             var Cast = db.Cast_TVSeries.Where(n => n.TVSeriesID == MovieID).ToList();
             ViewData["Actors"] = Cast;
+            var Director = db.Director_TVSeries.Where(n => n.TVSeriesID == MovieID).ToList();
+            ViewData["Director"] = Director;
             return View(movie);
 
         }

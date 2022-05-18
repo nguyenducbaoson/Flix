@@ -12,33 +12,28 @@ namespace Web.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PhimBo
+    public partial class Director
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PhimBo()
+        public Director()
         {
-            this.CTTapPhims = new HashSet<CTTapPhim>();
-            this.Cast_TVSeries = new HashSet<Cast_TVSeries>();
+            this.Director_Movie = new HashSet<Director_Movie>();
             this.Director_TVSeries = new HashSet<Director_TVSeries>();
         }
     
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> IDCategory { get; set; }
-        public Nullable<int> Year { get; set; }
+        public string DirectorID { get; set; }
+        public string FullName { get; set; }
         public string Images { get; set; }
-        public Nullable<int> Viewed { get; set; }
-        public Nullable<int> Country { get; set; }
-        public string Trailer { get; set; }
-        public Nullable<int> Rate { get; set; }
-        public string Banner { get; set; }
-        public Nullable<int> Active { get; set; }
-        public string Descripton { get; set; }
+        public string BirthName { get; set; }
+        public Nullable<System.DateTime> DateofBirth { get; set; }
+        public string Height { get; set; }
+        public string Nationality { get; set; }
+        public string Picture { get; set; }
+        public string Born { get; set; }
+        public string About { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CTTapPhim> CTTapPhims { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cast_TVSeries> Cast_TVSeries { get; set; }
+        public virtual ICollection<Director_Movie> Director_Movie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Director_TVSeries> Director_TVSeries { get; set; }
     }

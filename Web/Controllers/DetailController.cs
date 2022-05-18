@@ -33,17 +33,21 @@ namespace Web.Controllers
             //ViewData["Actors"] = casts;
             var Cast = db.Cast_Movie.Where(n => n.IDMovie == MovieID).ToList();
             ViewData["Actors"] = Cast;
+            var Director = db.Director_Movie.Where(n => n.IDMovie == MovieID).ToList();
+            ViewData["Director"] = Director;
             return View(movie);
         }
-        public ActionResult Profile(string CastID = "C1")
+        public ActionResult Profile(string DirectorID = "D1")
         {
-            Cast cast = db.Casts.SingleOrDefault(n => n.CastID == CastID);
-            if (cast == null)
+            Director director = db.Directors.SingleOrDefault(n => n.DirectorID == DirectorID);
+            if (director == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            return View(cast);
+            var directors = db.Director_Movie.Where(n => n.DriectorID == DirectorID).ToList();
+            ViewData["moviejoined"] = directors;
+            return View(director);
         }
         public ViewResult Cast()
         {

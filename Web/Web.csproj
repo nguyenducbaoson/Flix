@@ -377,6 +377,7 @@
     <Compile Include="Controllers\API\NguoiDungController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
+    <Compile Include="Controllers\DirectorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MyListController.cs" />
@@ -405,6 +406,15 @@
     </Compile>
     <Compile Include="Models\CountryModel.cs" />
     <Compile Include="Models\CTTapPhim.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Director.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Director_Movie.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Director_TVSeries.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FilmRequestModel.cs" />
@@ -604,6 +614,30 @@
     <Content Include="Images\Banner\wanda-banner.jpg" />
     <Content Include="Images\Banner\wearing-banner %281%29.jpg" />
     <Content Include="Images\Detail\star %281%29.png" />
+    <Content Include="Images\Directors\45-christopher-nolan-elleman %282%29.jpg" />
+    <Content Include="Images\Directors\Adrian Molina.jpg" />
+    <Content Include="Images\Directors\Chris Sanders.jpg" />
+    <Content Include="Images\Directors\jbareham_201019_1054_glenn_keane.jpg" />
+    <Content Include="Images\Directors\kate %281%29.jpg" />
+    <Content Include="Images\Directors\Kirk DeMicco.jpg" />
+    <Content Include="Images\Directors\Lee-Unkrich-1108x0-c-default %281%29.jpg" />
+    <Content Include="Images\Directors\matt %281%29.jpg" />
+    <Content Include="Images\Directors\Michael.jpg" />
+    <Content Include="Images\Directors\MV5BNzg2NjA5ODAyMV5BMl5BanBnXkFtZTgwODAzMjkxNDE.jpg" />
+    <Content Include="Images\Directors\Nagamine Tatsuya.jpg" />
+    <Content Include="Images\Directors\Profile\443d490da8a8233a0ef0003ce4814105.jpg" />
+    <Content Include="Images\Directors\Profile\Adrian Molina.jpg" />
+    <Content Include="Images\Directors\Profile\bay.jpg" />
+    <Content Include="Images\Directors\Profile\Chris_Sanders.jpg" />
+    <Content Include="Images\Directors\Profile\coogler.jpg" />
+    <Content Include="Images\Directors\Profile\Glen_Keane.jpg" />
+    <Content Include="Images\Directors\Profile\Jon_Watts_by_Gage_Skidmore_2.jpg" />
+    <Content Include="Images\Directors\Profile\krik.jpg" />
+    <Content Include="Images\Directors\Profile\Lee_Unkrich.jpg" />
+    <Content Include="Images\Directors\Profile\matt.jpg" />
+    <Content Include="Images\Directors\Profile\Nagamine Tatsuya.jpg" />
+    <Content Include="Images\Directors\Profile\nolan.jpg" />
+    <Content Include="Images\Directors\ryan.jpg" />
     <Content Include="Images\Index\365.jpg" />
     <Content Include="Images\Index\7394.jpg" />
     <Content Include="Images\Index\annabelle.jpg" />
@@ -803,6 +837,8 @@
     <Content Include="Views\Actors\Index.cshtml" />
     <Content Include="Views\Detail\Profile.cshtml" />
     <Content Include="Views\Actors\Moviesjoined.cshtml" />
+    <Content Include="Views\Director\Profile.cshtml" />
+    <Content Include="Views\Director\Moviesjoined.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

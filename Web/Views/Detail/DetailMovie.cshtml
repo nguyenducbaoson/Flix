@@ -61,19 +61,6 @@
                                                     <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
                                                 </a>
                                             }
-                                            @*<a href="#" data-tooltip="Peter Dinklage" data-placement="top">
-                            <img src="https://pbs.twimg.com/profile_images/3408187873/3ac928389d4a3f78b8a1bfb8dd42cec3_normal.jpeg" alt="avatar1" />
-                        </a>
-                        <a href="#" data-tooltip="Emilia Clarke" data-placement="top">
-                            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRu-erGhZPhzH0Aq5s8UKFOQL0GNFVqnlN3C08Fayjm_R9nvuYHPQ" alt="avatar3" />
-                        </a>
-                        <a href="#" data-tooltip="Zendaya" data-placement="top">
-                            <img src="~/Images/Actors/zendaya1_Fotor (1).jpg" alt="avatar3" />
-                        </a>
-                        <a href="#" data-tooltip="Tom Holland" data-placement="top">
-                            <img src="~/Images/Actors/images-_3_ (1).jpg" alt="avatar3" />
-                        </a>*@
-
                                         </div>
                                         <div class="text">
                                             While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, plans to return after thousands of years in the North.
@@ -88,13 +75,22 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td width="100px" style="color: white; font-weight: bold;">Director</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td width="100px" style="color: white; font-weight: bold;">Cast</td>
+                            <td width="100px" style="color: white; font-weight: bold; padding-top: 28px;">Director</td>
                             <td>
-                                <div class="avatars">
+                                <div class="cast">
+                                    @foreach (var item in ViewData["Director"] as List<Director_Movie>)
+                                    {
+                                        <a href="@Url.Action("Profile","Director",new {DirectorID = @item.Director.DirectorID })" data-tooltip="@item.Director.FullName" data-placement="top">
+                                            <img src="~/Images/Directors/@item.Director.Images" alt="@item.Director.FullName" />
+                                        </a>
+                                    }
+                                    </div>
+                            </td>   
+                        </tr>
+                        <!--<tr>
+                            <!--<td width="100px" style="color: white; font-weight: bold;">Cast</td>
+                            <td>-->
+                                <!--@*<div class="avatars">
                                     @foreach (var item in ViewData["Actors"] as List<Cast_Movie>)
                                     {
 
@@ -102,9 +98,9 @@
                                             <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
                                         </a>
                                         }
-                                    </div>
-                            </td>
-                        </tr>
+                                    </div>*@-->
+                            <!--</td>-->
+                        <!--</tr>-->
                         <tr>
                             <td width="100px" style="color: white; font-weight: bold;">Time</td>
                             <td>120 Minutes</td>

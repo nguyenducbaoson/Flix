@@ -18,6 +18,7 @@ namespace Web.Models
         public Movie()
         {
             this.Cast_Movie = new HashSet<Cast_Movie>();
+            this.Director_Movie = new HashSet<Director_Movie>();
         }
     
         public string MovieID { get; set; }
@@ -51,5 +52,7 @@ namespace Web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cast_Movie> Cast_Movie { get; set; }
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Director_Movie> Director_Movie { get; set; }
     }
 }
