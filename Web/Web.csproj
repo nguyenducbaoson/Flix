@@ -375,6 +375,7 @@
     <Compile Include="Controllers\API\MovieApiController.cs" />
     <Compile Include="Controllers\API\MyListApiController.cs" />
     <Compile Include="Controllers\API\NguoiDungController.cs" />
+    <Compile Include="Controllers\API\TVSeriesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\DirectorController.cs" />
