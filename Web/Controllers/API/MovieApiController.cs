@@ -12,29 +12,6 @@ namespace Web.Controllers.API
     public class MovieApiController : ApiController
     {
         Movie12Entities db = new Movie12Entities();
-        // GET api/values
-        [HttpGet]
-        public List<Movie> GetAll()
-        {
-            var movie = db.Movies.ToList();
-            var lstMovie = new List<Movie>();
-            foreach (var item in movie)
-            {
-                lstMovie.Add(new Movie()
-                {
-                    MovieID = item.MovieID,
-                    Name = item.Name,
-                    Image = item.Image,
-                    Actor = item.Actor,
-                    Description = item.Description,
-                    Directors = item.Directors,
-                    Time = item.Time,
-                    Year = item.Year,
-                    Country = item.Country
-                });
-            }
-            return lstMovie;
-        }
         [HttpGet]
         [Route("api/MovieApi/Top")]
         public List<Movie> GetTop()
