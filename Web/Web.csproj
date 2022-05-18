@@ -367,6 +367,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ActorsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\API\CategoryApiController.cs" />
     <Compile Include="Controllers\API\CountryApiController.cs" />
@@ -764,6 +765,7 @@
     <Folder Include="Areas\" />
     <Folder Include="Context\" />
     <Folder Include="Videos\" />
+    <Folder Include="Views\Actors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
