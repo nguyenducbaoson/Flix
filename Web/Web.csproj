@@ -668,6 +668,7 @@
     <Content Include="Images\Login\close.png" />
     <Content Include="Images\Login\netflix-bg.jpg" />
     <Content Include="Images\Login\netflix-logo.png" />
+    <Content Include="Images\Pictures\Tom_Holland.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -759,13 +760,15 @@
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Home\Price.cshtml" />
     <Content Include="Views\Home\TVSeriesBanner.cshtml" />
+    <Content Include="Views\Actors\Profile.cshtml" />
+    <Content Include="Views\Actors\Index.cshtml" />
+    <Content Include="Views\Detail\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
     <Folder Include="Context\" />
     <Folder Include="Videos\" />
-    <Folder Include="Views\Actors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

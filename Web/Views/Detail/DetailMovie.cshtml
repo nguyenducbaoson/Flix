@@ -56,7 +56,7 @@
                                         <h2>Cast:</h2>
                                         @foreach (var item in ViewData["Actors"] as List<Cast_Movie>)
                                         {
-                                            <a href="#" data-tooltip="@item.Cast.FullName" data-placement="top">
+                                            <a href="@Url.Action("Profile","Detail",new {@CastID = @item.Cast.CastID })" data-tooltip="@item.Cast.FullName" data-placement="top">
                                                 <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
                                             </a>
                                         }
@@ -97,7 +97,7 @@
                                     @foreach (var item in ViewData["Actors"] as List<Cast_Movie>)
                                     {
 
-                                        <a href="#" data-tooltip="Person 1" data-placement="top" style="cursor:pointer;padding-left:15px">
+                                        <a href="@Url.Action("Profile","Actors",new {@ID = item.Cast.CastID })" data-tooltip="Person 1" data-placement="top" style="cursor:pointer;padding-left:15px">
                                             <img src="~/Images/Actors/@item.Cast.Images" alt="avatar1" />
                                         </a>
                                         }

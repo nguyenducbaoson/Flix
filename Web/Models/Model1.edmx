@@ -10,11 +10,16 @@
             <PropertyRef Name="CastID" />
           </Key>
           <Property Name="CastID" Type="char" MaxLength="25" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar(max)" />
           <Property Name="Age" Type="int" />
           <Property Name="Images" Type="nvarchar(max)" />
           <Property Name="About" Type="nvarchar(max)" />
-          <Property Name="IDMovie" Type="char" MaxLength="25" />
+          <Property Name="BirthName" Type="nvarchar(max)" />
+          <Property Name="DateofBirth" Type="date" />
+          <Property Name="Height" Type="nchar" MaxLength="10" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="Picture" Type="nvarchar(max)" />
+          <Property Name="Born" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Cast_Movie">
           <Key>
@@ -272,12 +277,17 @@
             <PropertyRef Name="CastID" />
           </Key>
           <Property Name="CastID" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Age" Type="Int32" />
           <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IDMovie" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Cast_Movie" Relationship="Movie12Model.FK_Cast_Movie_Cast" FromRole="Cast" ToRole="Cast_Movie" />
+          <Property Name="BirthName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="Height" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cast_Movie" Relationship="Self.FK_Cast_Movie_Cast" FromRole="Cast" ToRole="Cast_Movie" />
+          <Property Name="Born" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Cast_Movie">
           <Key>
@@ -287,8 +297,8 @@
           <Property Name="CastID" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="IDMovie" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cast" Relationship="Movie12Model.FK_Cast_Movie_Cast" FromRole="Cast_Movie" ToRole="Cast" />
-          <NavigationProperty Name="Movie" Relationship="Movie12Model.FK_Cast_Movie_Movie" FromRole="Cast_Movie" ToRole="Movie" />
+          <NavigationProperty Name="Cast" Relationship="Self.FK_Cast_Movie_Cast" FromRole="Cast_Movie" ToRole="Cast" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK_Cast_Movie_Movie" FromRole="Cast_Movie" ToRole="Movie" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -355,8 +365,8 @@
           <Property Name="Isbanner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Int32" />
           <Property Name="IDPrice" Type="Int32" />
+          <NavigationProperty Name="Cast_Movie" Relationship="Self.FK_Cast_Movie_Movie" FromRole="Movie" ToRole="Cast_Movie" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Movie_Category" FromRole="Movie" ToRole="Category" />
-          <NavigationProperty Name="Cast_Movie" Relationship="Movie12Model.FK_Cast_Movie_Movie" FromRole="Movie" ToRole="Cast_Movie" />
         </EntityType>
         <EntityType Name="MyList">
           <Key>
@@ -427,6 +437,30 @@
           <Property Name="IDPay" Type="Guid" />
           <NavigationProperty Name="Pay" Relationship="Self.FK_User_Pay" FromRole="User" ToRole="Pay" />
         </EntityType>
+        <Association Name="FK_Cast_Movie_Cast">
+          <End Role="Cast" Type="Self.Cast" Multiplicity="1" />
+          <End Role="Cast_Movie" Type="Self.Cast_Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cast">
+              <PropertyRef Name="CastID" />
+            </Principal>
+            <Dependent Role="Cast_Movie">
+              <PropertyRef Name="CastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cast_Movie_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Cast_Movie" Type="Self.Cast_Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieID" />
+            </Principal>
+            <Dependent Role="Cast_Movie">
+              <PropertyRef Name="IDMovie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Movie_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
@@ -488,6 +522,14 @@
           <EntitySet Name="Prices" EntityType="Self.Price" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Cast_Movie_Cast" Association="Self.FK_Cast_Movie_Cast">
+            <End Role="Cast" EntitySet="Casts" />
+            <End Role="Cast_Movie" EntitySet="Cast_Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cast_Movie_Movie" Association="Self.FK_Cast_Movie_Movie">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="Cast_Movie" EntitySet="Cast_Movie" />
+          </AssociationSet>
           <AssociationSet Name="FK_Movie_Category" Association="Self.FK_Movie_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Movie" EntitySet="Movies" />
@@ -504,39 +546,7 @@
             <End Role="Pay" EntitySet="Pays" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cast_Movie_Cast" Association="Movie12Model.FK_Cast_Movie_Cast">
-            <End Role="Cast" EntitySet="Casts" />
-            <End Role="Cast_Movie" EntitySet="Cast_Movie" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cast_Movie_Movie" Association="Movie12Model.FK_Cast_Movie_Movie">
-            <End Role="Movie" EntitySet="Movies" />
-            <End Role="Cast_Movie" EntitySet="Cast_Movie" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Cast_Movie_Cast">
-          <End Type="Movie12Model.Cast" Role="Cast" Multiplicity="1" />
-          <End Type="Movie12Model.Cast_Movie" Role="Cast_Movie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cast">
-              <PropertyRef Name="CastID" />
-            </Principal>
-            <Dependent Role="Cast_Movie">
-              <PropertyRef Name="CastID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cast_Movie_Movie">
-          <End Type="Movie12Model.Movie" Role="Movie" Multiplicity="1" />
-          <End Type="Movie12Model.Cast_Movie" Role="Cast_Movie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Movie">
-              <PropertyRef Name="MovieID" />
-            </Principal>
-            <Dependent Role="Cast_Movie">
-              <PropertyRef Name="IDMovie" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -546,12 +556,17 @@
           <EntitySetMapping Name="Casts">
             <EntityTypeMapping TypeName="Movie12Model.Cast">
               <MappingFragment StoreEntitySet="Cast">
+                <ScalarProperty Name="Born" ColumnName="Born" />
                 <ScalarProperty Name="CastID" ColumnName="CastID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Images" ColumnName="Images" />
                 <ScalarProperty Name="About" ColumnName="About" />
-                <ScalarProperty Name="IDMovie" ColumnName="IDMovie" />
+                <ScalarProperty Name="BirthName" ColumnName="BirthName" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

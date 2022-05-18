@@ -1,0 +1,128 @@
+﻿@model Web.Models.Cast
+@using Web.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/Detail/css.css" rel="stylesheet" />
+<link href="~/css/Detail/classy-nav.css" rel="stylesheet" />
+<link href="~/css/Detail/font-awesome.min.css" rel="stylesheet" />
+<style>
+    .btn {
+        cursor: pointer;
+    }
+</style>
+<div class="container clear_navar" style="padding-top: 60px;">
+
+    <div class="row" style="max-width: 80%">
+
+        <div class="col-xl-8" style="height: auto; padding-top: 40px">
+            <div class=" detail">
+                <div style="   background-image :src(" /Images/Index/wanda-banner.jpg")">
+                    <div class="row" style="margin: 10px">
+
+                        <div style="width :50%" class="col-12 col-sm-4 col-md-4 ">
+                            <div class="section-header">
+                                @Html.DisplayFor(model => model.FullName)
+                            </div>
+                            @*<img width="40%" src="@Url.Content("~/Images/Index/"+@Html.DisplayFor(model => model.Image))">*@
+                        </div>
+                        <div style="width :50%" class="col-12 col-sm-8 col-md-8">
+                            <div class="chitiet" style="padding-top: 20px;width:100%;margin:auto">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td width="100px" style="color: white; font-weight: bold;">Director</td>
+                                            <td>Will Smith</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100px" style="color: white; font-weight: bold;">Cast</td>
+                                            <td>Will Smith</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100px" style="color: white; font-weight: bold;">Time</td>
+                                            <td>120 Minutes</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color:white; font-weight: bold;">Country</td>
+                                            <td><a>America</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: white; font-weight: bold;">Category</td>
+                                            @*<td>@Html.DisplayFor(model => model.Category.NameCategory)</td>*@
+                                        </tr>
+                                        <tr>
+                                            <td style="color: white; font-weight: bold;">Year</td>
+                                            @*<td data-v-7c633b6c=""><a>@Html.DisplayFor(model => model.Year)</a></td>*@
+                                        </tr>
+                                        <tr>
+                                            <td style="color: white; font-weight: bold;">Views</td>
+                                            <td data-v-7c633b6c=""><a>13</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: white; font-weight: bold;">IMDB</td>
+                                            <td data-v-7c633b6c=""><a>7.4 <img src="~/Images/Detail/star (1).png" /></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div style="padding-top: 25px;">
+                                <ul class="nav-menu" id="nav-menu">
+                                    @*<li>
+                                        @if (Session["User"] != null)
+                                        {
+                                            <a href="@Url.Action("Index","Watch",new {@MovieID = Model.MovieID })" class="btn btn-hover">
+                                                <span>Watch Now</span>
+                                            </a>
+                                        }
+                                        @if (Session["User"] == null)
+                                        {
+                                            <a id="demo" class="btn btn-hover">
+                                                <span>Watch Now</span>
+                                            </a>
+                                        }*@
+                                    </li>
+                                    <li>
+                                        @*<p class="btn btn-hover" onclick="return them('+@Session["TK"]+','+@Model.MovieID+')">*@
+
+                                        <a href="#" class="btn btn-hover">
+                                            <span>Watch Later</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="film-desc" style="padding-top: 15px; margin: 20px">
+                    <span>Nội dung</span>
+                    <div id="summary">
+                        <p class="collapse" id="collapseSummary">
+                            WandaVision is an American television miniseries created by Jac Schaeffer for the streaming service Disney+, based on Marvel Comics featuring the characters Wanda Maximoff / Scarlet Witch and Vision. It is the first television series in the Marvel Cinematic Universe (MCU) produced by Marvel Studios, sharing continuity with the films of the franchise and taking place after the events of the film Avengers: Endgame (2019). Schaeffer served as head writer with Matt Shakman directing.
+                            Elizabeth Olsen and Paul Bettany reprise their respective roles as Wanda Maximoff and Vision from the film series, with Debra Jo Rupp, Fred Melamed, Kathryn Hahn, Teyonah Parris, Randall Park, Kat Dennings, and Evan Peters also starring. By September 2018, Marvel Studios was developing a number of limited series for Disney+ centered on supporting characters from the MCU films such as Maximoff and Vision, with Olsen and Bettany returning. Schaeffer was hired in January 2019, with the series officially announced that April, and Shakman joining in August. The series pays homage to past sitcoms, with Maximoff and Vision living in a reality that takes them through different decades of television tropes. Filming began in Atlanta, Georgia, in November 2019, before production halted in March 2020 due to the COVID-19 pandemic. Production resumed in Los Angeles in September 2020 and wrapped that November.
+                            WandaVision premiered with its first two episodes on January 15, 2021, and ran for nine episodes, concluding on March 5. It is the first series, and beginning, of Phase Four of the MCU. The series received praise from critics for its recreation of past sitcoms and for the performances of its cast, especially those of Olsen, Bettany, and Hahn, though there was criticism for the finale. It was widely discussed and analyzed by fans based on various popular theories, as well as by commentators for its exploration of grief and nostalgia. The series has received numerous accolades, including 23 Primetime Emmy Award nominations, winning three. WandaVision directly sets up the film Doctor Strange in the Multiverse of Madness (2022), in which Olsen reprises her role as Maximoff, while a spin-off series is in development, with Hahn returning as Agatha Harkness and Schaeffer writing and executive producing.
+                        </p>
+                        <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-header">
+                TRAILER
+            </div>
+            <div id="instructions">
+                @*<iframe src="https://stream1.linhminaz.com/v/MMsp8iIVyHPz7WU" frameborder="0" allowFullScreen="true" width="640" height="320"></iframe>*@
+                @*<iframe src="@Html.DisplayFor(model => model.MovieLink)" frameborder="0" allowFullScreen="true" width="1280" height="640"></iframe>*@
+                @*<video id="my_video_1" class="video-js vjs-default-skin" width="900px" height="267px"
+                           controls preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
+                           data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+                        <source src="https://stream1.linhminaz.com/v/3aOilI3oLvmGO5j" type='video/mp4' />
+                        <source src="https://stream1.linhminaz.com/v/3aOilI3oLvmGO5j" type='video/webm' />
+                    </video>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+

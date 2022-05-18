@@ -25,7 +25,12 @@ namespace Web.Models
         public Nullable<int> Age { get; set; }
         public string Images { get; set; }
         public string About { get; set; }
-        public string IDMovie { get; set; }
+        public string BirthName { get; set; }
+        public Nullable<System.DateTime> DateofBirth { get; set; }
+        public string Height { get; set; }
+        public string Nationality { get; set; }
+        public string Picture { get; set; }
+        public string Born { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cast_Movie> Cast_Movie { get; set; }

@@ -35,6 +35,16 @@ namespace Web.Controllers
             ViewData["Actors"] = Cast;
             return View(movie);
         }
+        public ActionResult Profile(string CastID = "C1")
+        {
+            Cast cast = db.Casts.SingleOrDefault(n => n.CastID == CastID);
+            if (cast == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(cast);
+        }
         public ViewResult Cast()
         {
             return View();
