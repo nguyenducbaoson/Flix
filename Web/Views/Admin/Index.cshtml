@@ -90,11 +90,16 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" onclick="phim()" style="cursor:pointer;">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Danh sách phim</span>
                 </a>
-
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" onclick="phimbo()">Phim bộ </a>
+                        <a class="collapse-item" onclick="phim()">Phim lẻ </a>
+                    </div>
+                </div>
             </li>
 
             <!-- Divider -->
@@ -183,7 +188,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Nhóm 2 Môn Thiết Kế Web</span>
+                        <span>Copyright &copy; Nguyen Duc Bao Son</span>
                     </div>
                 </div>
             </footer>
@@ -222,6 +227,8 @@
     <script src="~/Content/Admin1/js/theloai.js"></script>
     <script src="~/Content/Admin1/js/nguoidung.js"></script>
     <script src="~/Content/Admin1/js/thongke.js"></script>
+    <script src="~/Content/Admin1/js/phimbo.js"></script>
+
 </body>
 </html>
 

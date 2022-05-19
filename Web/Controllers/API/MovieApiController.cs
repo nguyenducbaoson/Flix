@@ -14,7 +14,7 @@ namespace Web.Controllers.API
         Movie12Entities db = new Movie12Entities();
         // GET api/values
         [HttpGet]
-        public List<Movie> GetAll()
+        public List<Movie> GetTVSeries()
         {
             var movie = db.Movies.ToList();
             var lstMovie = new List<Movie>();

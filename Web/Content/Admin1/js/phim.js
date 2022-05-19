@@ -11,7 +11,7 @@
                 str += '<tr><td style="text-align: center">' + val.MovieID + '</td><td style="text-align: center"><p>' + val.Name + '</p></td><td style="text-align: center"><img src="/Images/Index/' + val.Image + '" style="width :80px; height:80px" alt="' + val.Image + '"/></td><td style="width: 14%; text-align: center"><a type="submit" onclick="formsuaphim(\'' + val.MovieID + '\')" class="btn btn-primary btn-icon-split"><span class="icon text-white-50"><i class="fas fa-edit"></i></span></a><a type="submit" onclick="xoaphim(\'' + val.MovieID + '\')" class="btn btn-danger btn-icon-split"><span class="icon text-white-50"><i class="fas fa-trash"></i></span></a></td></tr> ';
             });
             str += '</tbody></table></div></div></div>';
-            $('#Display').html(str);
+  /*          $('#Display').html(str);*/
         },
         error: function (xhr) {
             alert(xhr.responseText);
