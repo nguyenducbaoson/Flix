@@ -52,12 +52,15 @@ namespace Web.Controllers
             if(string.IsNullOrEmpty(tk))
             {
                 ViewData["Error"] = "You must enter your email";
-                return PartialView("Load", "Pay");
             }
             else if(string.IsNullOrEmpty(mk))
             {
                 ViewData["Error2"] = "You must enter your password";
             }
+            else if(string.IsNullOrEmpty(mk) && string.IsNullOrEmpty(mk))
+            {
+                ViewData["Error"] = "You must enter your email";
+            }    
             else
             {
                 User user = db.Users.SingleOrDefault(n => n.Email == tk && n.Password == mk);

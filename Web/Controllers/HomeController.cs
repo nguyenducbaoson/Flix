@@ -34,7 +34,7 @@ namespace WebXemPhim.Controllers
             ViewBag.TheLoai = db.Categories.SingleOrDefault(n => n.CategoryID == id).NameCategory;
             return View(lstMovie.ToPagedList(pageNum, pageSize));
         }
-        public ViewResult GetMovieByCountry(int? page,int id)
+        public ViewResult GetMovieByCountry(int? page, int id)
         {
 
             int pageSize = 12;
