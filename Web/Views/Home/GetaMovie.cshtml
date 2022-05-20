@@ -1,40 +1,42 @@
-﻿@using Web.Models
-@model List<Movie>
-<div class="section">
-    <div class="hero-slide-item">
-        <img src="~/Images/Index/transformer-banner.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="hero-slide-item-content">
-            <div class="item-content-wraper">
-                <div class="item-content-title">
-                    Transformer
-                </div>
-                <div class="movie-infos">
-                    <div class="movie-info">
-                        <i class="bx bxs-star"></i>
-                        <span>9.5</span>
+﻿@model Web.Models.Movie
+@using Web.Models;
+
+    <div class="section">
+        <div class="hero-slide-item">
+            <img src="~/Images/Index/transformer-banner.jpg" alt="">
+            <div class="overlay"></div>
+            <div class="hero-slide-item-content">
+                <div class="item-content-wraper">
+                    <div class="item-content-title">
+                        @Html.DisplayFor(model => model.Name)
                     </div>
-                    <div class="movie-info">
-                        <i class="bx bxs-time"></i>
-                        <span>120 mins</span>
+                    <div class="movie-infos">
+                        <div class="movie-info">
+                            <i class="bx bxs-star"></i>
+                            <span>     @Html.DisplayFor(model => model.Rate)</span>
+                        </div>
+                        <div class="movie-info">
+                            <i class="bx bxs-time"></i>
+                            <span>     @Html.DisplayFor(model => model.Time)</span>
+                        </div>
+                        <div class="movie-info">
+                            <span>HD</span>
+                        </div>
+                        <div class="movie-info">
+                            <span>16+</span>
+                        </div>
                     </div>
-                    <div class="movie-info">
-                        <span>HD</span>
+                    <div class="item-content-description">
+                        @Html.DisplayFor(model => model.Description)
                     </div>
-                    <div class="movie-info">
-                        <span>16+</span>
+                    <div class="item-action">
+                        <a href="@Url.Action("DetailMovie","Detail",new { @MovieID =@Html.DisplayFor(model => model.MovieID)})" class="btn btn-hover">
+                            <i class="bx bxs-right-arrow"></i>
+                            <span>Watch now</span>
+                        </a>
                     </div>
-                </div>
-                <div class="item-content-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
-                </div>
-                <div class="item-action">
-                    <a href="#" class="btn btn-hover">
-                        <i class="bx bxs-right-arrow"></i>
-                        <span>Watch now</span>
-                    </a>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}

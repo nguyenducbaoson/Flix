@@ -81,6 +81,7 @@ namespace WebXemPhim.Controllers
         }
         public PartialViewResult GetaMovie()
         {
+
             Movie lstMovie = db.Movies.Where(n => n.MovieID =="10").SingleOrDefault();
             ViewBag.lstMovie = db.PhimBoes.ToList();
             return PartialView(lstMovie);
