@@ -843,6 +843,7 @@
     <Content Include="Views\Actors\Moviesjoined.cshtml" />
     <Content Include="Views\Director\Profile.cshtml" />
     <Content Include="Views\Director\Moviesjoined.cshtml" />
+    <Content Include="Views\Home\GetaMovie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

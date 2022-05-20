@@ -79,6 +79,12 @@ namespace WebXemPhim.Controllers
             ViewBag.lstMovie = db.PhimBoes.ToList();
             return PartialView(lstMovie);
         }
+        public PartialViewResult GetaMovie()
+        {
+            Movie lstMovie = db.Movies.Where(n => n.MovieID =="10").SingleOrDefault();
+            ViewBag.lstMovie = db.PhimBoes.ToList();
+            return PartialView(lstMovie);
+        }
         public PartialViewResult Category3()
         {
             List<Movie> lstMovie = db.Movies.Where(n => n.CategoryID == 1021).OrderBy(n => n.Name).ToList();

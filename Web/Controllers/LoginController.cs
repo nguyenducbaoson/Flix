@@ -133,7 +133,7 @@ namespace Web.Controllers
                 tk.FullName = (string)Session["email"];
                 db.Users.Add(tk);
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("SignIn","Login");
             }
             return View();
         }
